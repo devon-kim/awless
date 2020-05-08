@@ -3,19 +3,22 @@
 package opsworkscm
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opAssociateNode = "AssociateNode"
 
 // AssociateNodeRequest generates a "aws/request.Request" representing the
 // client's request for the AssociateNode operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -52,7 +55,7 @@ func (c *OpsWorksCM) AssociateNodeRequest(input *AssociateNodeInput) (req *reque
 	return
 }
 
-// AssociateNode API operation for AWS OpsWorks for Chef Automate.
+// AssociateNode API operation for AWS OpsWorks CM.
 //
 // Associates a new node with the server. For more information about how to
 // disassociate a node, see DisassociateNode.
@@ -80,18 +83,18 @@ func (c *OpsWorksCM) AssociateNodeRequest(input *AssociateNodeInput) (req *reque
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation AssociateNode for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/AssociateNode
@@ -120,8 +123,8 @@ const opCreateBackup = "CreateBackup"
 
 // CreateBackupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateBackup operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -158,7 +161,7 @@ func (c *OpsWorksCM) CreateBackupRequest(input *CreateBackupInput) (req *request
 	return
 }
 
-// CreateBackup API operation for AWS OpsWorks for Chef Automate.
+// CreateBackup API operation for AWS OpsWorks CM.
 //
 // Creates an application-level backup of a server. While the server is in the
 // BACKING_UP state, the server cannot be changed, and no additional backup
@@ -179,21 +182,21 @@ func (c *OpsWorksCM) CreateBackupRequest(input *CreateBackupInput) (req *request
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation CreateBackup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The limit of servers or backups has been reached.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateBackup
@@ -222,8 +225,8 @@ const opCreateServer = "CreateServer"
 
 // CreateServerRequest generates a "aws/request.Request" representing the
 // client's request for the CreateServer operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -260,7 +263,7 @@ func (c *OpsWorksCM) CreateServerRequest(input *CreateServerInput) (req *request
 	return
 }
 
-// CreateServer API operation for AWS OpsWorks for Chef Automate.
+// CreateServer API operation for AWS OpsWorks CM.
 //
 // Creates and immedately starts a new server. The server is ready to use when
 // it is in the HEALTHY state. By default, you can create a maximum of 10 servers.
@@ -290,24 +293,28 @@ func (c *OpsWorksCM) CreateServerRequest(input *CreateServerInput) (req *request
 // and address ranges only. To edit security group rules, open Security Groups
 // in the navigation pane of the EC2 management console.
 //
+// To specify your own domain for a server, and provide your own self-signed
+// or CA-signed certificate and private key, specify values for CustomDomain,
+// CustomCertificate, and CustomPrivateKey.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation CreateServer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   The limit of servers or backups has been reached.
 //
-//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
+//   * ResourceAlreadyExistsException
 //   The requested resource cannot be created because it already exists.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateServer
@@ -336,8 +343,8 @@ const opDeleteBackup = "DeleteBackup"
 
 // DeleteBackupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteBackup operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -371,10 +378,11 @@ func (c *OpsWorksCM) DeleteBackupRequest(input *DeleteBackupInput) (req *request
 
 	output = &DeleteBackupOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// DeleteBackup API operation for AWS OpsWorks for Chef Automate.
+// DeleteBackup API operation for AWS OpsWorks CM.
 //
 // Deletes a backup. You can delete both manual and automated backups. This
 // operation is asynchronous.
@@ -387,18 +395,18 @@ func (c *OpsWorksCM) DeleteBackupRequest(input *DeleteBackupInput) (req *request
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DeleteBackup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteBackup
@@ -427,8 +435,8 @@ const opDeleteServer = "DeleteServer"
 
 // DeleteServerRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteServer operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -462,10 +470,11 @@ func (c *OpsWorksCM) DeleteServerRequest(input *DeleteServerInput) (req *request
 
 	output = &DeleteServerOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// DeleteServer API operation for AWS OpsWorks for Chef Automate.
+// DeleteServer API operation for AWS OpsWorks CM.
 //
 // Deletes the server and the underlying AWS CloudFormation stacks (including
 // the server's EC2 instance). When you run this command, the server state is
@@ -483,18 +492,18 @@ func (c *OpsWorksCM) DeleteServerRequest(input *DeleteServerInput) (req *request
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DeleteServer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteServer
@@ -523,8 +532,8 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 
 // DescribeAccountAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeAccountAttributes operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -561,10 +570,9 @@ func (c *OpsWorksCM) DescribeAccountAttributesRequest(input *DescribeAccountAttr
 	return
 }
 
-// DescribeAccountAttributes API operation for AWS OpsWorks for Chef Automate.
+// DescribeAccountAttributes API operation for AWS OpsWorks CM.
 //
-// Describes your account attributes, and creates requests to increase limits
-// before they are reached or exceeded.
+// Describes your OpsWorks-CM account attributes.
 //
 // This operation is synchronous.
 //
@@ -572,7 +580,7 @@ func (c *OpsWorksCM) DescribeAccountAttributesRequest(input *DescribeAccountAttr
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeAccountAttributes for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeAccountAttributes
 func (c *OpsWorksCM) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (*DescribeAccountAttributesOutput, error) {
@@ -600,8 +608,8 @@ const opDescribeBackups = "DescribeBackups"
 
 // DescribeBackupsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeBackups operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -627,6 +635,12 @@ func (c *OpsWorksCM) DescribeBackupsRequest(input *DescribeBackupsInput) (req *r
 		Name:       opDescribeBackups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -638,7 +652,7 @@ func (c *OpsWorksCM) DescribeBackupsRequest(input *DescribeBackupsInput) (req *r
 	return
 }
 
-// DescribeBackups API operation for AWS OpsWorks for Chef Automate.
+// DescribeBackups API operation for AWS OpsWorks CM.
 //
 // Describes backups. The results are ordered by time, with newest backups first.
 // If you do not specify a BackupId or ServerName, the command returns all backups.
@@ -652,17 +666,17 @@ func (c *OpsWorksCM) DescribeBackupsRequest(input *DescribeBackupsInput) (req *r
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeBackups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   This occurs when the provided nextToken is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeBackups
@@ -687,12 +701,64 @@ func (c *OpsWorksCM) DescribeBackupsWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+// DescribeBackupsPages iterates over the pages of a DescribeBackups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeBackups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeBackups operation.
+//    pageNum := 0
+//    err := client.DescribeBackupsPages(params,
+//        func(page *opsworkscm.DescribeBackupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *OpsWorksCM) DescribeBackupsPages(input *DescribeBackupsInput, fn func(*DescribeBackupsOutput, bool) bool) error {
+	return c.DescribeBackupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeBackupsPagesWithContext same as DescribeBackupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) DescribeBackupsPagesWithContext(ctx aws.Context, input *DescribeBackupsInput, fn func(*DescribeBackupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeBackupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeBackupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeBackupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeEvents = "DescribeEvents"
 
 // DescribeEventsRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeEvents operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -718,6 +784,12 @@ func (c *OpsWorksCM) DescribeEventsRequest(input *DescribeEventsInput) (req *req
 		Name:       opDescribeEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -729,7 +801,7 @@ func (c *OpsWorksCM) DescribeEventsRequest(input *DescribeEventsInput) (req *req
 	return
 }
 
-// DescribeEvents API operation for AWS OpsWorks for Chef Automate.
+// DescribeEvents API operation for AWS OpsWorks CM.
 //
 // Describes events for a specified server. Results are ordered by time, with
 // newest events first.
@@ -743,17 +815,17 @@ func (c *OpsWorksCM) DescribeEventsRequest(input *DescribeEventsInput) (req *req
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeEvents for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   This occurs when the provided nextToken is not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeEvents
@@ -778,12 +850,64 @@ func (c *OpsWorksCM) DescribeEventsWithContext(ctx aws.Context, input *DescribeE
 	return out, req.Send()
 }
 
+// DescribeEventsPages iterates over the pages of a DescribeEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEvents operation.
+//    pageNum := 0
+//    err := client.DescribeEventsPages(params,
+//        func(page *opsworkscm.DescribeEventsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *OpsWorksCM) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool) error {
+	return c.DescribeEventsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeEventsPagesWithContext same as DescribeEventsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) DescribeEventsPagesWithContext(ctx aws.Context, input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeEventsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeEventsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEventsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeNodeAssociationStatus = "DescribeNodeAssociationStatus"
 
 // DescribeNodeAssociationStatusRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeNodeAssociationStatus operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -820,7 +944,7 @@ func (c *OpsWorksCM) DescribeNodeAssociationStatusRequest(input *DescribeNodeAss
 	return
 }
 
-// DescribeNodeAssociationStatus API operation for AWS OpsWorks for Chef Automate.
+// DescribeNodeAssociationStatus API operation for AWS OpsWorks CM.
 //
 // Returns the current status of an existing association or disassociation request.
 //
@@ -832,14 +956,14 @@ func (c *OpsWorksCM) DescribeNodeAssociationStatusRequest(input *DescribeNodeAss
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeNodeAssociationStatus for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeNodeAssociationStatus
@@ -868,8 +992,8 @@ const opDescribeServers = "DescribeServers"
 
 // DescribeServersRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeServers operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -895,6 +1019,12 @@ func (c *OpsWorksCM) DescribeServersRequest(input *DescribeServersInput) (req *r
 		Name:       opDescribeServers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -906,7 +1036,7 @@ func (c *OpsWorksCM) DescribeServersRequest(input *DescribeServersInput) (req *r
 	return
 }
 
-// DescribeServers API operation for AWS OpsWorks for Chef Automate.
+// DescribeServers API operation for AWS OpsWorks CM.
 //
 // Lists all configuration management servers that are identified with your
 // account. Only the stored results from Amazon DynamoDB are returned. AWS OpsWorks
@@ -921,17 +1051,17 @@ func (c *OpsWorksCM) DescribeServersRequest(input *DescribeServersInput) (req *r
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeServers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   This occurs when the provided nextToken is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeServers
@@ -956,12 +1086,64 @@ func (c *OpsWorksCM) DescribeServersWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+// DescribeServersPages iterates over the pages of a DescribeServers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeServers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeServers operation.
+//    pageNum := 0
+//    err := client.DescribeServersPages(params,
+//        func(page *opsworkscm.DescribeServersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *OpsWorksCM) DescribeServersPages(input *DescribeServersInput, fn func(*DescribeServersOutput, bool) bool) error {
+	return c.DescribeServersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeServersPagesWithContext same as DescribeServersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) DescribeServersPagesWithContext(ctx aws.Context, input *DescribeServersInput, fn func(*DescribeServersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeServersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeServersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeServersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDisassociateNode = "DisassociateNode"
 
 // DisassociateNodeRequest generates a "aws/request.Request" representing the
 // client's request for the DisassociateNode operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -998,7 +1180,7 @@ func (c *OpsWorksCM) DisassociateNodeRequest(input *DisassociateNodeInput) (req 
 	return
 }
 
-// DisassociateNode API operation for AWS OpsWorks for Chef Automate.
+// DisassociateNode API operation for AWS OpsWorks CM.
 //
 // Disassociates a node from an AWS OpsWorks CM server, and removes the node
 // from the server's managed nodes. After a node is disassociated, the node
@@ -1014,18 +1196,18 @@ func (c *OpsWorksCM) DisassociateNodeRequest(input *DisassociateNodeInput) (req 
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DisassociateNode for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DisassociateNode
@@ -1050,12 +1232,248 @@ func (c *OpsWorksCM) DisassociateNodeWithContext(ctx aws.Context, input *Disasso
 	return out, req.Send()
 }
 
+const opExportServerEngineAttribute = "ExportServerEngineAttribute"
+
+// ExportServerEngineAttributeRequest generates a "aws/request.Request" representing the
+// client's request for the ExportServerEngineAttribute operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExportServerEngineAttribute for more information on using the ExportServerEngineAttribute
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ExportServerEngineAttributeRequest method.
+//    req, resp := client.ExportServerEngineAttributeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/ExportServerEngineAttribute
+func (c *OpsWorksCM) ExportServerEngineAttributeRequest(input *ExportServerEngineAttributeInput) (req *request.Request, output *ExportServerEngineAttributeOutput) {
+	op := &request.Operation{
+		Name:       opExportServerEngineAttribute,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ExportServerEngineAttributeInput{}
+	}
+
+	output = &ExportServerEngineAttributeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ExportServerEngineAttribute API operation for AWS OpsWorks CM.
+//
+// Exports a specified server engine attribute as a base64-encoded string. For
+// example, you can export user data that you can use in EC2 to associate nodes
+// with a server.
+//
+// This operation is synchronous.
+//
+// A ValidationException is raised when parameters of the request are not valid.
+// A ResourceNotFoundException is thrown when the server does not exist. An
+// InvalidStateException is thrown when the server is in any of the following
+// states: CREATING, TERMINATED, FAILED or DELETING.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS OpsWorks CM's
+// API operation ExportServerEngineAttribute for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   One or more of the provided request parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist, or access was denied.
+//
+//   * InvalidStateException
+//   The resource is in a state that does not allow you to perform a specified
+//   action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/ExportServerEngineAttribute
+func (c *OpsWorksCM) ExportServerEngineAttribute(input *ExportServerEngineAttributeInput) (*ExportServerEngineAttributeOutput, error) {
+	req, out := c.ExportServerEngineAttributeRequest(input)
+	return out, req.Send()
+}
+
+// ExportServerEngineAttributeWithContext is the same as ExportServerEngineAttribute with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExportServerEngineAttribute for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) ExportServerEngineAttributeWithContext(ctx aws.Context, input *ExportServerEngineAttributeInput, opts ...request.Option) (*ExportServerEngineAttributeOutput, error) {
+	req, out := c.ExportServerEngineAttributeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/ListTagsForResource
+func (c *OpsWorksCM) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for AWS OpsWorks CM.
+//
+// Returns a list of tags that are applied to the specified AWS OpsWorks for
+// Chef Automate or AWS OpsWorks for Puppet Enterprise servers or backups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS OpsWorks CM's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The requested resource does not exist, or access was denied.
+//
+//   * ValidationException
+//   One or more of the provided request parameters are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/ListTagsForResource
+func (c *OpsWorksCM) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTagsForResourcePages iterates over the pages of a ListTagsForResource operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTagsForResource method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTagsForResource operation.
+//    pageNum := 0
+//    err := client.ListTagsForResourcePages(params,
+//        func(page *opsworkscm.ListTagsForResourceOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *OpsWorksCM) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
+	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTagsForResourcePagesWithContext same as ListTagsForResourcePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) ListTagsForResourcePagesWithContext(ctx aws.Context, input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTagsForResourceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTagsForResourceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opRestoreServer = "RestoreServer"
 
 // RestoreServerRequest generates a "aws/request.Request" representing the
 // client's request for the RestoreServer operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1089,16 +1507,23 @@ func (c *OpsWorksCM) RestoreServerRequest(input *RestoreServerInput) (req *reque
 
 	output = &RestoreServerOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
-// RestoreServer API operation for AWS OpsWorks for Chef Automate.
+// RestoreServer API operation for AWS OpsWorks CM.
 //
 // Restores a backup to a server that is in a CONNECTION_LOST, HEALTHY, RUNNING,
 // UNHEALTHY, or TERMINATED state. When you run RestoreServer, the server's
 // EC2 instance is deleted, and a new EC2 instance is configured. RestoreServer
 // maintains the existing server endpoint, so configuration management of the
 // server's client devices (nodes) should continue to work.
+//
+// Restoring from a backup is performed by creating a new EC2 instance. If restoration
+// is successful, and the server is in a HEALTHY state, AWS OpsWorks CM switches
+// traffic over to the new instance. After restoration is finished, the old
+// EC2 instance is maintained in a Running or Stopped state, but is eventually
+// terminated.
 //
 // This operation is asynchronous.
 //
@@ -1110,18 +1535,18 @@ func (c *OpsWorksCM) RestoreServerRequest(input *RestoreServerInput) (req *reque
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation RestoreServer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/RestoreServer
@@ -1150,8 +1575,8 @@ const opStartMaintenance = "StartMaintenance"
 
 // StartMaintenanceRequest generates a "aws/request.Request" representing the
 // client's request for the StartMaintenance operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1188,7 +1613,7 @@ func (c *OpsWorksCM) StartMaintenanceRequest(input *StartMaintenanceInput) (req 
 	return
 }
 
-// StartMaintenance API operation for AWS OpsWorks for Chef Automate.
+// StartMaintenance API operation for AWS OpsWorks CM.
 //
 // Manually starts server maintenance. This command can be useful if an earlier
 // maintenance attempt failed, and the underlying cause of maintenance failure
@@ -1204,18 +1629,18 @@ func (c *OpsWorksCM) StartMaintenanceRequest(input *StartMaintenanceInput) (req 
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation StartMaintenance for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/StartMaintenance
@@ -1240,12 +1665,187 @@ func (c *OpsWorksCM) StartMaintenanceWithContext(ctx aws.Context, input *StartMa
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/TagResource
+func (c *OpsWorksCM) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for AWS OpsWorks CM.
+//
+// Applies tags to an AWS OpsWorks for Chef Automate or AWS OpsWorks for Puppet
+// Enterprise server, or to server backups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS OpsWorks CM's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The requested resource does not exist, or access was denied.
+//
+//   * ValidationException
+//   One or more of the provided request parameters are not valid.
+//
+//   * InvalidStateException
+//   The resource is in a state that does not allow you to perform a specified
+//   action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/TagResource
+func (c *OpsWorksCM) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UntagResource
+func (c *OpsWorksCM) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for AWS OpsWorks CM.
+//
+// Removes specified tags from an AWS OpsWorks-CM server or backup.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS OpsWorks CM's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The requested resource does not exist, or access was denied.
+//
+//   * ValidationException
+//   One or more of the provided request parameters are not valid.
+//
+//   * InvalidStateException
+//   The resource is in a state that does not allow you to perform a specified
+//   action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UntagResource
+func (c *OpsWorksCM) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *OpsWorksCM) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateServer = "UpdateServer"
 
 // UpdateServerRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateServer operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1282,7 +1882,7 @@ func (c *OpsWorksCM) UpdateServerRequest(input *UpdateServerInput) (req *request
 	return
 }
 
-// UpdateServer API operation for AWS OpsWorks for Chef Automate.
+// UpdateServer API operation for AWS OpsWorks CM.
 //
 // Updates settings for a server.
 //
@@ -1292,18 +1892,18 @@ func (c *OpsWorksCM) UpdateServerRequest(input *UpdateServerInput) (req *request
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation UpdateServer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServer
@@ -1332,8 +1932,8 @@ const opUpdateServerEngineAttributes = "UpdateServerEngineAttributes"
 
 // UpdateServerEngineAttributesRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateServerEngineAttributes operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1370,13 +1970,12 @@ func (c *OpsWorksCM) UpdateServerEngineAttributesRequest(input *UpdateServerEngi
 	return
 }
 
-// UpdateServerEngineAttributes API operation for AWS OpsWorks for Chef Automate.
+// UpdateServerEngineAttributes API operation for AWS OpsWorks CM.
 //
 // Updates engine-specific attributes on a specified server. The server enters
 // the MODIFYING state when this operation is in progress. Only one update can
-// occur at a time. You can use this command to reset a Chef server's private
-// key (CHEF_PIVOTAL_KEY), a Chef server's admin password (CHEF_DELIVERY_ADMIN_PASSWORD),
-// or a Puppet server's admin password (PUPPET_ADMIN_PASSWORD).
+// occur at a time. You can use this command to reset a Chef server's public
+// key (CHEF_PIVOTAL_KEY) or a Puppet server's admin password (PUPPET_ADMIN_PASSWORD).
 //
 // This operation is asynchronous.
 //
@@ -1389,18 +1988,18 @@ func (c *OpsWorksCM) UpdateServerEngineAttributesRequest(input *UpdateServerEngi
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for AWS OpsWorks for Chef Automate's
+// See the AWS API reference guide for AWS OpsWorks CM's
 // API operation UpdateServerEngineAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServerEngineAttributes
@@ -1426,7 +2025,6 @@ func (c *OpsWorksCM) UpdateServerEngineAttributesWithContext(ctx aws.Context, in
 }
 
 // Stores account attributes.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/AccountAttribute
 type AccountAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -1476,7 +2074,6 @@ func (s *AccountAttribute) SetUsed(v int64) *AccountAttribute {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/AssociateNodeRequest
 type AssociateNodeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1559,7 +2156,6 @@ func (s *AssociateNodeInput) SetServerName(v string) *AssociateNodeInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/AssociateNodeResponse
 type AssociateNodeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1585,7 +2181,6 @@ func (s *AssociateNodeOutput) SetNodeAssociationStatusToken(v string) *Associate
 }
 
 // Describes a single backup.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/Backup
 type Backup struct {
 	_ struct{} `type:"structure"`
 
@@ -1599,7 +2194,7 @@ type Backup struct {
 	BackupType *string `type:"string" enum:"BackupType"`
 
 	// The time stamp when the backup was created in the database. Example: 2016-07-29T13:38:47.520Z
-	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedAt *time.Time `type:"timestamp"`
 
 	// A user-provided description for a manual backup. This field is empty for
 	// automated backups.
@@ -1634,9 +2229,13 @@ type Backup struct {
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// This field is deprecated and is no longer used.
+	//
+	// Deprecated: S3DataSize has been deprecated
 	S3DataSize *int64 `deprecated:"true" type:"integer"`
 
 	// This field is deprecated and is no longer used.
+	//
+	// Deprecated: S3DataUrl has been deprecated
 	S3DataUrl *string `deprecated:"true" type:"string"`
 
 	// The Amazon S3 URL of the backup's log file.
@@ -1825,7 +2424,6 @@ func (s *Backup) SetUserArn(v string) *Backup {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateBackupRequest
 type CreateBackupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1836,6 +2434,26 @@ type CreateBackupInput struct {
 	//
 	// ServerName is a required field
 	ServerName *string `min:"1" type:"string" required:"true"`
+
+	// A map that contains tag keys and tag values to attach to an AWS OpsWorks-CM
+	// server backup.
+	//
+	//    * The key cannot be empty.
+	//
+	//    * The key can be a maximum of 127 characters, and can contain only Unicode
+	//    letters, numbers, or separators, or the following special characters:
+	//    + - = . _ : /
+	//
+	//    * The value can be a maximum 255 characters, and contain only Unicode
+	//    letters, numbers, or separators, or the following special characters:
+	//    + - = . _ : /
+	//
+	//    * Leading and trailing white spaces are trimmed from both the key and
+	//    value.
+	//
+	//    * A maximum of 50 user-applied tags is allowed for tag-supported AWS OpsWorks-CM
+	//    resources.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -1857,6 +2475,16 @@ func (s *CreateBackupInput) Validate() error {
 	if s.ServerName != nil && len(*s.ServerName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ServerName", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1876,7 +2504,12 @@ func (s *CreateBackupInput) SetServerName(v string) *CreateBackupInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateBackupResponse
+// SetTags sets the Tags field's value.
+func (s *CreateBackupInput) SetTags(v []*Tag) *CreateBackupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateBackupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1900,7 +2533,6 @@ func (s *CreateBackupOutput) SetBackup(v *Backup) *CreateBackupOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateServerRequest
 type CreateServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1917,35 +2549,77 @@ type CreateServerInput struct {
 	// exceeded. The default value is 1.
 	BackupRetentionCount *int64 `min:"1" type:"integer"`
 
+	// A PEM-formatted HTTPS certificate. The value can be be a single, self-signed
+	// certificate, or a certificate chain. If you specify a custom certificate,
+	// you must also specify values for CustomDomain and CustomPrivateKey. The following
+	// are requirements for the CustomCertificate value:
+	//
+	//    * You can provide either a self-signed, custom certificate, or the full
+	//    certificate chain.
+	//
+	//    * The certificate must be a valid X509 certificate, or a certificate chain
+	//    in PEM format.
+	//
+	//    * The certificate must be valid at the time of upload. A certificate can't
+	//    be used before its validity period begins (the certificate's NotBefore
+	//    date), or after it expires (the certificate's NotAfter date).
+	//
+	//    * The certificate’s common name or subject alternative names (SANs),
+	//    if present, must match the value of CustomDomain.
+	//
+	//    * The certificate must match the value of CustomPrivateKey.
+	CustomCertificate *string `type:"string"`
+
+	// An optional public endpoint of a server, such as https://aws.my-company.com.
+	// To access the server, create a CNAME DNS record in your preferred DNS service
+	// that points the custom domain to the endpoint that is generated when the
+	// server is created (the value of the CreateServer Endpoint attribute). You
+	// cannot access the server by using the generated Endpoint value if the server
+	// is using a custom domain. If you specify a custom domain, you must also specify
+	// values for CustomCertificate and CustomPrivateKey.
+	CustomDomain *string `type:"string"`
+
+	// A private key in PEM format for connecting to the server by using HTTPS.
+	// The private key must not be encrypted; it cannot be protected by a password
+	// or passphrase. If you specify a custom private key, you must also specify
+	// values for CustomDomain and CustomCertificate.
+	CustomPrivateKey *string `type:"string" sensitive:"true"`
+
 	// Enable or disable scheduled backups. Valid values are true or false. The
 	// default value is true.
 	DisableAutomatedBackup *bool `type:"boolean"`
 
-	// The configuration management engine to use. Valid values include Chef and
-	// Puppet.
+	// The configuration management engine to use. Valid values include ChefAutomate
+	// and Puppet.
 	Engine *string `type:"string"`
 
 	// Optional engine attributes on a specified server.
 	//
 	// Attributes accepted in a Chef createServer request:
 	//
-	//    * CHEF_PIVOTAL_KEY: A base64-encoded RSA private key that is not stored
-	//    by AWS OpsWorks for Chef Automate. This private key is required to access
-	//    the Chef API. When no CHEF_PIVOTAL_KEY is set, one is generated and returned
-	//    in the response.
+	//    * CHEF_AUTOMATE_PIVOTAL_KEY: A base64-encoded RSA public key. The corresponding
+	//    private key is required to access the Chef API. When no CHEF_AUTOMATE_PIVOTAL_KEY
+	//    is set, a private key is generated and returned in the response.
 	//
-	//    * CHEF_DELIVERY_ADMIN_PASSWORD: The password for the administrative user
-	//    in the Chef Automate GUI. The password length is a minimum of eight characters,
-	//    and a maximum of 32. The password can contain letters, numbers, and special
-	//    characters (!/@#$%^&+=_). The password must contain at least one lower
-	//    case letter, one upper case letter, one number, and one special character.
-	//    When no CHEF_DELIVERY_ADMIN_PASSWORD is set, one is generated and returned
-	//    in the response.
+	//    * CHEF_AUTOMATE_ADMIN_PASSWORD: The password for the administrative user
+	//    in the Chef Automate web-based dashboard. The password length is a minimum
+	//    of eight characters, and a maximum of 32. The password can contain letters,
+	//    numbers, and special characters (!/@#$%^&+=_). The password must contain
+	//    at least one lower case letter, one upper case letter, one number, and
+	//    one special character. When no CHEF_AUTOMATE_ADMIN_PASSWORD is set, one
+	//    is generated and returned in the response.
 	//
 	// Attributes accepted in a Puppet createServer request:
 	//
 	//    * PUPPET_ADMIN_PASSWORD: To work with the Puppet Enterprise console, a
 	//    password must use ASCII characters.
+	//
+	//    * PUPPET_R10K_REMOTE: The r10k remote is the URL of your control repository
+	//    (for example, ssh://git@your.git-repo.com:user/control-repo.git). Specifying
+	//    an r10k remote opens TCP port 8170.
+	//
+	//    * PUPPET_R10K_PRIVATE_KEY: If you are using a private Git repository,
+	//    add PUPPET_R10K_PRIVATE_KEY to specify a PEM-encoded private SSH key.
 	EngineAttributes []*EngineAttribute `type:"list"`
 
 	// The engine model of the server. Valid values in this release include Monolithic
@@ -1967,8 +2641,7 @@ type CreateServerInput struct {
 	// InstanceProfileArn is a required field
 	InstanceProfileArn *string `type:"string" required:"true"`
 
-	// The Amazon EC2 instance type to use. For example, m4.large. Recommended instance
-	// types include t2.medium and greater, m4.*, or c4.xlarge and greater.
+	// The Amazon EC2 instance type to use. For example, m5.large.
 	//
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true"`
@@ -1989,9 +2662,9 @@ type CreateServerInput struct {
 	// The specified time is in coordinated universal time (UTC). The default value
 	// is a random, daily start time.
 	//
-	// Example:08:00, which represents a daily start time of 08:00 UTC.
+	// Example: 08:00, which represents a daily start time of 08:00 UTC.
 	//
-	// Example:Mon:08:00, which represents a start time of every Monday at 08:00
+	// Example: Mon:08:00, which represents a start time of every Monday at 08:00
 	// UTC. (8:00 a.m.)
 	PreferredBackupWindow *string `type:"string"`
 
@@ -2001,7 +2674,7 @@ type CreateServerInput struct {
 	// time (UTC). The default value is a random one-hour period on Tuesday, Wednesday,
 	// or Friday. See TimeWindowDefinition for more information.
 	//
-	// Example:Mon:08:00, which represents a start time of every Monday at 08:00
+	// Example: Mon:08:00, which represents a start time of every Monday at 08:00
 	// UTC. (8:00 a.m.)
 	PreferredMaintenanceWindow *string `type:"string"`
 
@@ -2041,8 +2714,28 @@ type CreateServerInput struct {
 	// enabled.
 	//
 	// For more information about supported Amazon EC2 platforms, see Supported
-	// Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
+	// Platforms (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	SubnetIds []*string `type:"list"`
+
+	// A map that contains tag keys and tag values to attach to an AWS OpsWorks
+	// for Chef Automate or AWS OpsWorks for Puppet Enterprise server.
+	//
+	//    * The key cannot be empty.
+	//
+	//    * The key can be a maximum of 127 characters, and can contain only Unicode
+	//    letters, numbers, or separators, or the following special characters:
+	//    + - = . _ : / @
+	//
+	//    * The value can be a maximum 255 characters, and contain only Unicode
+	//    letters, numbers, or separators, or the following special characters:
+	//    + - = . _ : / @
+	//
+	//    * Leading and trailing white spaces are trimmed from both the key and
+	//    value.
+	//
+	//    * A maximum of 50 user-applied tags is allowed for any AWS OpsWorks-CM
+	//    server.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -2076,6 +2769,16 @@ func (s *CreateServerInput) Validate() error {
 	if s.ServiceRoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("ServiceRoleArn"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2098,6 +2801,24 @@ func (s *CreateServerInput) SetBackupId(v string) *CreateServerInput {
 // SetBackupRetentionCount sets the BackupRetentionCount field's value.
 func (s *CreateServerInput) SetBackupRetentionCount(v int64) *CreateServerInput {
 	s.BackupRetentionCount = &v
+	return s
+}
+
+// SetCustomCertificate sets the CustomCertificate field's value.
+func (s *CreateServerInput) SetCustomCertificate(v string) *CreateServerInput {
+	s.CustomCertificate = &v
+	return s
+}
+
+// SetCustomDomain sets the CustomDomain field's value.
+func (s *CreateServerInput) SetCustomDomain(v string) *CreateServerInput {
+	s.CustomDomain = &v
+	return s
+}
+
+// SetCustomPrivateKey sets the CustomPrivateKey field's value.
+func (s *CreateServerInput) SetCustomPrivateKey(v string) *CreateServerInput {
+	s.CustomPrivateKey = &v
 	return s
 }
 
@@ -2185,7 +2906,12 @@ func (s *CreateServerInput) SetSubnetIds(v []*string) *CreateServerInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateServerResponse
+// SetTags sets the Tags field's value.
+func (s *CreateServerInput) SetTags(v []*Tag) *CreateServerInput {
+	s.Tags = v
+	return s
+}
+
 type CreateServerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2209,7 +2935,6 @@ func (s *CreateServerOutput) SetServer(v *Server) *CreateServerOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteBackupRequest
 type DeleteBackupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2249,7 +2974,6 @@ func (s *DeleteBackupInput) SetBackupId(v string) *DeleteBackupInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteBackupResponse
 type DeleteBackupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2264,7 +2988,6 @@ func (s DeleteBackupOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteServerRequest
 type DeleteServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2306,7 +3029,6 @@ func (s *DeleteServerInput) SetServerName(v string) *DeleteServerInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteServerResponse
 type DeleteServerOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2321,7 +3043,6 @@ func (s DeleteServerOutput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeAccountAttributesRequest
 type DescribeAccountAttributesInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2336,7 +3057,6 @@ func (s DescribeAccountAttributesInput) GoString() string {
 	return s.String()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeAccountAttributesResponse
 type DescribeAccountAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2360,28 +3080,16 @@ func (s *DescribeAccountAttributesOutput) SetAttributes(v []*AccountAttribute) *
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeBackupsRequest
 type DescribeBackupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Describes a single backup.
 	BackupId *string `type:"string"`
 
-	// To receive a paginated response, use this parameter to specify the maximum
-	// number of results to be returned with a single call. If the number of available
-	// results exceeds this maximum, the response includes a NextToken value that
-	// you can assign to the NextToken request parameter to get the next set of
-	// results.
+	// This is not currently implemented for DescribeBackups requests.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// NextToken is a string that is returned in some command responses. It indicates
-	// that not all entries have been returned, and that you must run at least one
-	// more request to get remaining items. To get remaining results, call DescribeBackups
-	// again, and assign the token from the previous results as the value of the
-	// nextToken parameter. If there are no more results, the response object's
-	// nextToken parameter value is null. Setting a nextToken value that was not
-	// returned in your previous results causes an InvalidNextTokenException to
-	// occur.
+	// This is not currently implemented for DescribeBackups requests.
 	NextToken *string `type:"string"`
 
 	// Returns backups for the server with the specified ServerName.
@@ -2438,21 +3146,13 @@ func (s *DescribeBackupsInput) SetServerName(v string) *DescribeBackupsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeBackupsResponse
 type DescribeBackupsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Contains the response to a DescribeBackups request.
 	Backups []*Backup `type:"list"`
 
-	// NextToken is a string that is returned in some command responses. It indicates
-	// that not all entries have been returned, and that you must run at least one
-	// more request to get remaining items. To get remaining results, call DescribeBackups
-	// again, and assign the token from the previous results as the value of the
-	// nextToken parameter. If there are no more results, the response object's
-	// nextToken parameter value is null. Setting a nextToken value that was not
-	// returned in your previous results causes an InvalidNextTokenException to
-	// occur.
+	// This is not currently implemented for DescribeBackups requests.
 	NextToken *string `type:"string"`
 }
 
@@ -2478,7 +3178,6 @@ func (s *DescribeBackupsOutput) SetNextToken(v string) *DescribeBackupsOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeEventsRequest
 type DescribeEventsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2552,7 +3251,6 @@ func (s *DescribeEventsInput) SetServerName(v string) *DescribeEventsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeEventsResponse
 type DescribeEventsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2592,7 +3290,6 @@ func (s *DescribeEventsOutput) SetServerEvents(v []*ServerEvent) *DescribeEvents
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeNodeAssociationStatusRequest
 type DescribeNodeAssociationStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2648,7 +3345,6 @@ func (s *DescribeNodeAssociationStatusInput) SetServerName(v string) *DescribeNo
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeNodeAssociationStatusResponse
 type DescribeNodeAssociationStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2690,25 +3386,13 @@ func (s *DescribeNodeAssociationStatusOutput) SetNodeAssociationStatus(v string)
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeServersRequest
 type DescribeServersInput struct {
 	_ struct{} `type:"structure"`
 
-	// To receive a paginated response, use this parameter to specify the maximum
-	// number of results to be returned with a single call. If the number of available
-	// results exceeds this maximum, the response includes a NextToken value that
-	// you can assign to the NextToken request parameter to get the next set of
-	// results.
+	// This is not currently implemented for DescribeServers requests.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// NextToken is a string that is returned in some command responses. It indicates
-	// that not all entries have been returned, and that you must run at least one
-	// more request to get remaining items. To get remaining results, call DescribeServers
-	// again, and assign the token from the previous results as the value of the
-	// nextToken parameter. If there are no more results, the response object's
-	// nextToken parameter value is null. Setting a nextToken value that was not
-	// returned in your previous results causes an InvalidNextTokenException to
-	// occur.
+	// This is not currently implemented for DescribeServers requests.
 	NextToken *string `type:"string"`
 
 	// Describes the server with the specified ServerName.
@@ -2759,23 +3443,21 @@ func (s *DescribeServersInput) SetServerName(v string) *DescribeServersInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeServersResponse
 type DescribeServersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// NextToken is a string that is returned in some command responses. It indicates
-	// that not all entries have been returned, and that you must run at least one
-	// more request to get remaining items. To get remaining results, call DescribeServers
-	// again, and assign the token from the previous results as the value of the
-	// nextToken parameter. If there are no more results, the response object's
-	// nextToken parameter value is null. Setting a nextToken value that was not
-	// returned in your previous results causes an InvalidNextTokenException to
-	// occur.
+	// This is not currently implemented for DescribeServers requests.
 	NextToken *string `type:"string"`
 
 	// Contains the response to a DescribeServers request.
 	//
-	// For Puppet Server:DescribeServersResponse$Servers$EngineAttributes contains
+	// For Chef Automate servers: If DescribeServersResponse$Servers$EngineAttributes
+	// includes CHEF_MAJOR_UPGRADE_AVAILABLE, you can upgrade the Chef Automate
+	// server to Chef Automate 2. To be eligible for upgrade, a server running Chef
+	// Automate 1 must have had at least one successful maintenance run after November
+	// 1, 2019.
+	//
+	// For Puppet Server: DescribeServersResponse$Servers$EngineAttributes contains
 	// PUPPET_API_CA_CERT. This is the PEM-encoded CA certificate that is used by
 	// the Puppet API over TCP port number 8140. The CA certificate is also used
 	// to sign node certificates.
@@ -2804,7 +3486,6 @@ func (s *DescribeServersOutput) SetServers(v []*Server) *DescribeServersOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DisassociateNodeRequest
 type DisassociateNodeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2875,7 +3556,6 @@ func (s *DisassociateNodeInput) SetServerName(v string) *DisassociateNodeInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DisassociateNodeResponse
 type DisassociateNodeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2901,7 +3581,6 @@ func (s *DisassociateNodeOutput) SetNodeAssociationStatusToken(v string) *Disass
 }
 
 // A name and value pair that is specific to the engine of the server.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/EngineAttribute
 type EngineAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -2909,7 +3588,7 @@ type EngineAttribute struct {
 	Name *string `type:"string"`
 
 	// The value of the engine attribute.
-	Value *string `type:"string"`
+	Value *string `type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -2934,7 +3613,518 @@ func (s *EngineAttribute) SetValue(v string) *EngineAttribute {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/RestoreServerRequest
+type ExportServerEngineAttributeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the export attribute. Currently, the supported export attribute
+	// is Userdata. This exports a user data script that includes parameters and
+	// values provided in the InputAttributes list.
+	//
+	// ExportAttributeName is a required field
+	ExportAttributeName *string `type:"string" required:"true"`
+
+	// The list of engine attributes. The list type is EngineAttribute. An EngineAttribute
+	// list item is a pair that includes an attribute name and its value. For the
+	// Userdata ExportAttributeName, the following are supported engine attribute
+	// names.
+	//
+	//    * RunList In Chef, a list of roles or recipes that are run in the specified
+	//    order. In Puppet, this parameter is ignored.
+	//
+	//    * OrganizationName In Chef, an organization name. AWS OpsWorks for Chef
+	//    Automate always creates the organization default. In Puppet, this parameter
+	//    is ignored.
+	//
+	//    * NodeEnvironment In Chef, a node environment (for example, development,
+	//    staging, or one-box). In Puppet, this parameter is ignored.
+	//
+	//    * NodeClientVersion In Chef, the version of the Chef engine (three numbers
+	//    separated by dots, such as 13.8.5). If this attribute is empty, OpsWorks
+	//    for Chef Automate uses the most current version. In Puppet, this parameter
+	//    is ignored.
+	InputAttributes []*EngineAttribute `type:"list"`
+
+	// The name of the server from which you are exporting the attribute.
+	//
+	// ServerName is a required field
+	ServerName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ExportServerEngineAttributeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportServerEngineAttributeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportServerEngineAttributeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportServerEngineAttributeInput"}
+	if s.ExportAttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExportAttributeName"))
+	}
+	if s.ServerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerName"))
+	}
+	if s.ServerName != nil && len(*s.ServerName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExportAttributeName sets the ExportAttributeName field's value.
+func (s *ExportServerEngineAttributeInput) SetExportAttributeName(v string) *ExportServerEngineAttributeInput {
+	s.ExportAttributeName = &v
+	return s
+}
+
+// SetInputAttributes sets the InputAttributes field's value.
+func (s *ExportServerEngineAttributeInput) SetInputAttributes(v []*EngineAttribute) *ExportServerEngineAttributeInput {
+	s.InputAttributes = v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *ExportServerEngineAttributeInput) SetServerName(v string) *ExportServerEngineAttributeInput {
+	s.ServerName = &v
+	return s
+}
+
+type ExportServerEngineAttributeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The requested engine attribute pair with attribute name and value.
+	EngineAttribute *EngineAttribute `type:"structure"`
+
+	// The server name used in the request.
+	ServerName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ExportServerEngineAttributeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportServerEngineAttributeOutput) GoString() string {
+	return s.String()
+}
+
+// SetEngineAttribute sets the EngineAttribute field's value.
+func (s *ExportServerEngineAttributeOutput) SetEngineAttribute(v *EngineAttribute) *ExportServerEngineAttributeOutput {
+	s.EngineAttribute = v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *ExportServerEngineAttributeOutput) SetServerName(v string) *ExportServerEngineAttributeOutput {
+	s.ServerName = &v
+	return s
+}
+
+// This occurs when the provided nextToken is not valid.
+type InvalidNextTokenException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Error or informational message that can contain more detail about a nextToken
+	// failure.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidNextTokenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidNextTokenException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
+	return &InvalidNextTokenException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidNextTokenException) Code() string {
+	return "InvalidNextTokenException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidNextTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidNextTokenException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidNextTokenException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidNextTokenException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidNextTokenException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The resource is in a state that does not allow you to perform a specified
+// action.
+type InvalidStateException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Error or informational message that provides more detail if a resource is
+	// in a state that is not valid for performing a specified action.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidStateException(v protocol.ResponseMetadata) error {
+	return &InvalidStateException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidStateException) Code() string {
+	return "InvalidStateException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidStateException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidStateException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidStateException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The limit of servers or backups has been reached.
+type LimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Error or informational message that the maximum allowed number of servers
+	// or backups has been exceeded.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *LimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *LimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// To receive a paginated response, use this parameter to specify the maximum
+	// number of results to be returned with a single call. If the number of available
+	// results exceeds this maximum, the response includes a NextToken value that
+	// you can assign to the NextToken request parameter to get the next set of
+	// results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// NextToken is a string that is returned in some command responses. It indicates
+	// that not all entries have been returned, and that you must run at least one
+	// more request to get remaining items. To get remaining results, call ListTagsForResource
+	// again, and assign the token from the previous results as the value of the
+	// nextToken parameter. If there are no more results, the response object's
+	// nextToken parameter value is null. Setting a nextToken value that was not
+	// returned in your previous results causes an InvalidNextTokenException to
+	// occur.
+	NextToken *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) of an AWS OpsWorks for Chef Automate or
+	// AWS OpsWorks for Puppet Enterprise server for which you want to show applied
+	// tags. For example, arn:aws:opsworks-cm:us-west-2:123456789012:server/test-owcm-server/EXAMPLE-66b0-4196-8274-d1a2bEXAMPLE.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTagsForResourceInput) SetMaxResults(v int64) *ListTagsForResourceInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTagsForResourceInput) SetNextToken(v string) *ListTagsForResourceInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that you can use as the value of NextToken in subsequent calls to
+	// the API to show more results.
+	NextToken *string `type:"string"`
+
+	// Tags that have been applied to the resource.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTagsForResourceOutput) SetNextToken(v string) *ListTagsForResourceOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
+// The requested resource cannot be created because it already exists.
+type ResourceAlreadyExistsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Error or informational message in response to a CreateServer request that
+	// a resource cannot be created because it already exists.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceAlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceAlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &ResourceAlreadyExistsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceAlreadyExistsException) Code() string {
+	return "ResourceAlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceAlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceAlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceAlreadyExistsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceAlreadyExistsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The requested resource does not exist, or access was denied.
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Error or informational message that can contain more detail about problems
+	// locating or accessing a resource.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type RestoreServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2943,10 +4133,10 @@ type RestoreServerInput struct {
 	// BackupId is a required field
 	BackupId *string `type:"string" required:"true"`
 
-	// The type of the instance to create. Valid values must be specified in the
-	// following format: ^([cm][34]|t2).* For example, m4.large. Valid values are
-	// t2.medium, m4.large, and m4.2xlarge. If you do not specify this parameter,
-	// RestoreServer uses the instance type from the specified backup.
+	// The type of instance to restore. Valid values must be specified in the following
+	// format: ^([cm][34]|t2).* For example, m5.large. Valid values are m5.large,
+	// r5.xlarge, and r5.2xlarge. If you do not specify this parameter, RestoreServer
+	// uses the instance type from the specified backup.
 	InstanceType *string `type:"string"`
 
 	// The name of the key pair to set on the new EC2 instance. This can be helpful
@@ -3012,7 +4202,6 @@ func (s *RestoreServerInput) SetServerName(v string) *RestoreServerInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/RestoreServerResponse
 type RestoreServerOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3028,7 +4217,6 @@ func (s RestoreServerOutput) GoString() string {
 }
 
 // Describes a configuration management server.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/Server
 type Server struct {
 	_ struct{} `type:"structure"`
 
@@ -3042,16 +4230,23 @@ type Server struct {
 	CloudFormationStackArn *string `type:"string"`
 
 	// Time stamp of server creation. Example 2016-07-29T13:38:47.520Z
-	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// An optional public endpoint of a server, such as https://aws.my-company.com.
+	// You cannot access the server by using the Endpoint value if the server has
+	// a CustomDomain specified.
+	CustomDomain *string `type:"string"`
 
 	// Disables automated backups. The number of stored backups is dependent on
 	// the value of PreferredBackupCount.
 	DisableAutomatedBackup *bool `type:"boolean"`
 
-	// A DNS name that can be used to access the engine. Example: myserver-asdfghjkl.us-east-1.opsworks.io
+	// A DNS name that can be used to access the engine. Example: myserver-asdfghjkl.us-east-1.opsworks.io.
+	// You cannot access the server by using the Endpoint value if the server has
+	// a CustomDomain specified.
 	Endpoint *string `type:"string"`
 
-	// The engine type of the server. Valid values in this release include Chef
+	// The engine type of the server. Valid values in this release include ChefAutomate
 	// and Puppet.
 	Engine *string `type:"string"`
 
@@ -3061,9 +4256,9 @@ type Server struct {
 	//
 	// Attributes returned in a createServer response for Chef
 	//
-	//    * CHEF_PIVOTAL_KEY: A base64-encoded RSA private key that is generated
-	//    by AWS OpsWorks for Chef Automate. This private key is required to access
-	//    the Chef API.
+	//    * CHEF_AUTOMATE_PIVOTAL_KEY: A base64-encoded RSA private key that is
+	//    generated by AWS OpsWorks for Chef Automate. This private key is required
+	//    to access the Chef API.
 	//
 	//    * CHEF_STARTER_KIT: A base64-encoded ZIP file. The ZIP file contains a
 	//    Chef starter kit, which includes a README, a configuration file, and the
@@ -3168,6 +4363,12 @@ func (s *Server) SetCloudFormationStackArn(v string) *Server {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *Server) SetCreatedAt(v time.Time) *Server {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomDomain sets the CustomDomain field's value.
+func (s *Server) SetCustomDomain(v string) *Server {
+	s.CustomDomain = &v
 	return s
 }
 
@@ -3287,12 +4488,11 @@ func (s *Server) SetSubnetIds(v []*string) *Server {
 
 // An event that is related to the server, such as the start of maintenance
 // or backup.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/ServerEvent
 type ServerEvent struct {
 	_ struct{} `type:"structure"`
 
 	// The time when the event occurred.
-	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
+	CreatedAt *time.Time `type:"timestamp"`
 
 	// The Amazon S3 URL of the event's log file.
 	LogUrl *string `type:"string"`
@@ -3338,12 +4538,19 @@ func (s *ServerEvent) SetServerName(v string) *ServerEvent {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/StartMaintenanceRequest
 type StartMaintenanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// Engine attributes that are specific to the server on which you want to run
 	// maintenance.
+	//
+	// Attributes accepted in a StartMaintenance request for Chef
+	//
+	//    * CHEF_MAJOR_UPGRADE: If a Chef Automate server is eligible for upgrade
+	//    to Chef Automate 2, add this engine attribute to a StartMaintenance request
+	//    and set the value to true to upgrade the server to Chef Automate 2. For
+	//    more information, see Upgrade an AWS OpsWorks for Chef Automate Server
+	//    to Chef Automate 2 (https://docs.aws.amazon.com/opsworks/latest/userguide/opscm-a2upgrade.html).
 	EngineAttributes []*EngineAttribute `type:"list"`
 
 	// The name of the server on which to run maintenance.
@@ -3390,7 +4597,6 @@ func (s *StartMaintenanceInput) SetServerName(v string) *StartMaintenanceInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/StartMaintenanceResponse
 type StartMaintenanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3414,7 +4620,230 @@ func (s *StartMaintenanceOutput) SetServer(v *Server) *StartMaintenanceOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServerEngineAttributesRequest
+// A map that contains tag keys and tag values to attach to an AWS OpsWorks
+// for Chef Automate or AWS OpsWorks for Puppet Enterprise server. Leading and
+// trailing white spaces are trimmed from both the key and value. A maximum
+// of 50 user-applied tags is allowed for tag-supported AWS OpsWorks-CM resources.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// A tag key, such as Stage or Name. A tag key cannot be empty. The key can
+	// be a maximum of 127 characters, and can contain only Unicode letters, numbers,
+	// or separators, or the following special characters: + - = . _ : /
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// An optional tag value, such as Production or test-owcm-server. The value
+	// can be a maximum of 255 characters, and contain only Unicode letters, numbers,
+	// or separators, or the following special characters: + - = . _ : /
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of a resource to which you want to apply
+	// tags. For example, arn:aws:opsworks-cm:us-west-2:123456789012:server/test-owcm-server/EXAMPLE-66b0-4196-8274-d1a2bEXAMPLE.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+
+	// A map that contains tag keys and tag values to attach to AWS OpsWorks-CM
+	// servers or backups.
+	//
+	//    * The key cannot be empty.
+	//
+	//    * The key can be a maximum of 127 characters, and can contain only Unicode
+	//    letters, numbers, or separators, or the following special characters:
+	//    + - = . _ : /
+	//
+	//    * The value can be a maximum 255 characters, and contain only Unicode
+	//    letters, numbers, or separators, or the following special characters:
+	//    + - = . _ : /
+	//
+	//    * Leading and trailing white spaces are trimmed from both the key and
+	//    value.
+	//
+	//    * A maximum of 50 user-applied tags is allowed for any AWS OpsWorks-CM
+	//    server or backup.
+	//
+	// Tags is a required field
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of a resource from which you want to remove
+	// tags. For example, arn:aws:opsworks-cm:us-west-2:123456789012:server/test-owcm-server/EXAMPLE-66b0-4196-8274-d1a2bEXAMPLE.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+
+	// The keys of tags that you want to remove.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateServerEngineAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3482,7 +4911,6 @@ func (s *UpdateServerEngineAttributesInput) SetServerName(v string) *UpdateServe
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServerEngineAttributesResponse
 type UpdateServerEngineAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3506,7 +4934,6 @@ func (s *UpdateServerEngineAttributesOutput) SetServer(v *Server) *UpdateServerE
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServerRequest
 type UpdateServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3591,7 +5018,6 @@ func (s *UpdateServerInput) SetServerName(v string) *UpdateServerInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServerResponse
 type UpdateServerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3613,6 +5039,64 @@ func (s UpdateServerOutput) GoString() string {
 func (s *UpdateServerOutput) SetServer(v *Server) *UpdateServerOutput {
 	s.Server = v
 	return s
+}
+
+// One or more of the provided request parameters are not valid.
+type ValidationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Error or informational message that can contain more detail about a validation
+	// failure.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s *ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s *ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ValidationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ValidationException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 const (

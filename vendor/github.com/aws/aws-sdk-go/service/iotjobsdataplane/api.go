@@ -3,17 +3,20 @@
 package iotjobsdataplane
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opDescribeJobExecution = "DescribeJobExecution"
 
 // DescribeJobExecutionRequest generates a "aws/request.Request" representing the
 // client's request for the DescribeJobExecution operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -61,25 +64,25 @@ func (c *IoTJobsDataPlane) DescribeJobExecutionRequest(input *DescribeJobExecuti
 // See the AWS API reference guide for AWS IoT Jobs Data Plane's
 // API operation DescribeJobExecution for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The contents of the request were invalid. For example, this code is returned
 //   when an UpdateJobExecution request contains invalid status details. The message
 //   contains details about the error.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource does not exist.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The rate exceeds the limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is temporarily unavailable.
 //
-//   * ErrCodeCertificateValidationException "CertificateValidationException"
+//   * CertificateValidationException
 //   The certificate is invalid.
 //
-//   * ErrCodeTerminalStateException "TerminalStateException"
+//   * TerminalStateException
 //   The job is in a terminal state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecution
@@ -108,8 +111,8 @@ const opGetPendingJobExecutions = "GetPendingJobExecutions"
 
 // GetPendingJobExecutionsRequest generates a "aws/request.Request" representing the
 // client's request for the GetPendingJobExecutions operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -157,22 +160,22 @@ func (c *IoTJobsDataPlane) GetPendingJobExecutionsRequest(input *GetPendingJobEx
 // See the AWS API reference guide for AWS IoT Jobs Data Plane's
 // API operation GetPendingJobExecutions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The contents of the request were invalid. For example, this code is returned
 //   when an UpdateJobExecution request contains invalid status details. The message
 //   contains details about the error.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource does not exist.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The rate exceeds the limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is temporarily unavailable.
 //
-//   * ErrCodeCertificateValidationException "CertificateValidationException"
+//   * CertificateValidationException
 //   The certificate is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutions
@@ -201,8 +204,8 @@ const opStartNextPendingJobExecution = "StartNextPendingJobExecution"
 
 // StartNextPendingJobExecutionRequest generates a "aws/request.Request" representing the
 // client's request for the StartNextPendingJobExecution operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -251,22 +254,22 @@ func (c *IoTJobsDataPlane) StartNextPendingJobExecutionRequest(input *StartNextP
 // See the AWS API reference guide for AWS IoT Jobs Data Plane's
 // API operation StartNextPendingJobExecution for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The contents of the request were invalid. For example, this code is returned
 //   when an UpdateJobExecution request contains invalid status details. The message
 //   contains details about the error.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource does not exist.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The rate exceeds the limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is temporarily unavailable.
 //
-//   * ErrCodeCertificateValidationException "CertificateValidationException"
+//   * CertificateValidationException
 //   The certificate is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecution
@@ -295,8 +298,8 @@ const opUpdateJobExecution = "UpdateJobExecution"
 
 // UpdateJobExecutionRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateJobExecution operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -344,25 +347,25 @@ func (c *IoTJobsDataPlane) UpdateJobExecutionRequest(input *UpdateJobExecutionIn
 // See the AWS API reference guide for AWS IoT Jobs Data Plane's
 // API operation UpdateJobExecution for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The contents of the request were invalid. For example, this code is returned
 //   when an UpdateJobExecution request contains invalid status details. The message
 //   contains details about the error.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource does not exist.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The rate exceeds the limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is temporarily unavailable.
 //
-//   * ErrCodeCertificateValidationException "CertificateValidationException"
+//   * CertificateValidationException
 //   The certificate is invalid.
 //
-//   * ErrCodeInvalidStateTransitionException "InvalidStateTransitionException"
+//   * InvalidStateTransitionException
 //   An update attempted to change the job execution to a state that is invalid
 //   because of the job execution's current state (for example, an attempt to
 //   change a request in state SUCCESS to state IN_PROGRESS). In this case, the
@@ -390,7 +393,63 @@ func (c *IoTJobsDataPlane) UpdateJobExecutionWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecutionRequest
+// The certificate is invalid.
+type CertificateValidationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// Additional information about the exception.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s CertificateValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CertificateValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorCertificateValidationException(v protocol.ResponseMetadata) error {
+	return &CertificateValidationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *CertificateValidationException) Code() string {
+	return "CertificateValidationException"
+}
+
+// Message returns the exception's message.
+func (s *CertificateValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *CertificateValidationException) OrigErr() error {
+	return nil
+}
+
+func (s *CertificateValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *CertificateValidationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *CertificateValidationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type DescribeJobExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -429,6 +488,9 @@ func (s *DescribeJobExecutionInput) Validate() error {
 	if s.JobId == nil {
 		invalidParams.Add(request.NewErrParamRequired("JobId"))
 	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
 	if s.ThingName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThingName"))
 	}
@@ -466,7 +528,6 @@ func (s *DescribeJobExecutionInput) SetThingName(v string) *DescribeJobExecution
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/DescribeJobExecutionResponse
 type DescribeJobExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -490,7 +551,6 @@ func (s *DescribeJobExecutionOutput) SetExecution(v *JobExecution) *DescribeJobE
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutionsRequest
 type GetPendingJobExecutionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -532,7 +592,6 @@ func (s *GetPendingJobExecutionsInput) SetThingName(v string) *GetPendingJobExec
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/GetPendingJobExecutionsResponse
 type GetPendingJobExecutionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -565,10 +624,131 @@ func (s *GetPendingJobExecutionsOutput) SetQueuedJobs(v []*JobExecutionSummary) 
 	return s
 }
 
+// The contents of the request were invalid. For example, this code is returned
+// when an UpdateJobExecution request contains invalid status details. The message
+// contains details about the error.
+type InvalidRequestException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The message for the exception.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidRequestException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidRequestException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// An update attempted to change the job execution to a state that is invalid
+// because of the job execution's current state (for example, an attempt to
+// change a request in state SUCCESS to state IN_PROGRESS). In this case, the
+// body of the error message also contains the executionState field.
+type InvalidStateTransitionException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidStateTransitionException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidStateTransitionException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidStateTransitionException(v protocol.ResponseMetadata) error {
+	return &InvalidStateTransitionException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidStateTransitionException) Code() string {
+	return "InvalidStateTransitionException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidStateTransitionException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidStateTransitionException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidStateTransitionException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidStateTransitionException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidStateTransitionException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Contains data about a job execution.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/JobExecution
 type JobExecution struct {
 	_ struct{} `type:"structure"`
+
+	// The estimated number of seconds that remain before the job execution status
+	// will be changed to TIMED_OUT.
+	ApproximateSecondsBeforeTimedOut *int64 `locationName:"approximateSecondsBeforeTimedOut" type:"long"`
 
 	// A number that identifies a particular job execution on a particular device.
 	// It can be used later in commands that return or update job execution information.
@@ -613,6 +793,12 @@ func (s JobExecution) String() string {
 // GoString returns the string representation
 func (s JobExecution) GoString() string {
 	return s.String()
+}
+
+// SetApproximateSecondsBeforeTimedOut sets the ApproximateSecondsBeforeTimedOut field's value.
+func (s *JobExecution) SetApproximateSecondsBeforeTimedOut(v int64) *JobExecution {
+	s.ApproximateSecondsBeforeTimedOut = &v
+	return s
 }
 
 // SetExecutionNumber sets the ExecutionNumber field's value.
@@ -676,7 +862,6 @@ func (s *JobExecution) SetVersionNumber(v int64) *JobExecution {
 }
 
 // Contains data about the state of a job execution.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/JobExecutionState
 type JobExecutionState struct {
 	_ struct{} `type:"structure"`
 
@@ -721,7 +906,6 @@ func (s *JobExecutionState) SetVersionNumber(v int64) *JobExecutionState {
 }
 
 // Contains a subset of information about a job execution.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/JobExecutionSummary
 type JobExecutionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -792,13 +976,136 @@ func (s *JobExecutionSummary) SetVersionNumber(v int64) *JobExecutionSummary {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecutionRequest
+// The specified resource does not exist.
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The message for the exception.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The service is temporarily unavailable.
+type ServiceUnavailableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The message for the exception.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceUnavailableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceUnavailableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type StartNextPendingJobExecutionInput struct {
 	_ struct{} `type:"structure"`
 
 	// A collection of name/value pairs that describe the status of the job execution.
 	// If not specified, the statusDetails are unchanged.
 	StatusDetails map[string]*string `locationName:"statusDetails" type:"map"`
+
+	// Specifies the amount of time this device has to finish execution of this
+	// job. If the job execution status is not set to a terminal state before this
+	// timer expires, or before the timer is reset (by calling UpdateJobExecution,
+	// setting the status to IN_PROGRESS and specifying a new timeout value in field
+	// stepTimeoutInMinutes) the job execution status will be automatically set
+	// to TIMED_OUT. Note that setting this timeout has no effect on that job execution
+	// timeout which may have been specified when the job was created (CreateJob
+	// using field timeoutConfig).
+	StepTimeoutInMinutes *int64 `locationName:"stepTimeoutInMinutes" type:"long"`
 
 	// The name of the thing associated with the device.
 	//
@@ -838,13 +1145,18 @@ func (s *StartNextPendingJobExecutionInput) SetStatusDetails(v map[string]*strin
 	return s
 }
 
+// SetStepTimeoutInMinutes sets the StepTimeoutInMinutes field's value.
+func (s *StartNextPendingJobExecutionInput) SetStepTimeoutInMinutes(v int64) *StartNextPendingJobExecutionInput {
+	s.StepTimeoutInMinutes = &v
+	return s
+}
+
 // SetThingName sets the ThingName field's value.
 func (s *StartNextPendingJobExecutionInput) SetThingName(v string) *StartNextPendingJobExecutionInput {
 	s.ThingName = &v
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/StartNextPendingJobExecutionResponse
 type StartNextPendingJobExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -868,7 +1180,124 @@ func (s *StartNextPendingJobExecutionOutput) SetExecution(v *JobExecution) *Star
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecutionRequest
+// The job is in a terminal state.
+type TerminalStateException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s TerminalStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TerminalStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorTerminalStateException(v protocol.ResponseMetadata) error {
+	return &TerminalStateException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TerminalStateException) Code() string {
+	return "TerminalStateException"
+}
+
+// Message returns the exception's message.
+func (s *TerminalStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TerminalStateException) OrigErr() error {
+	return nil
+}
+
+func (s *TerminalStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TerminalStateException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TerminalStateException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The rate exceeds the limit.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The message associated with the exception.
+	Message_ *string `locationName:"message" type:"string"`
+
+	// The payload associated with the exception.
+	//
+	// Payload is automatically base64 encoded/decoded by the SDK.
+	Payload []byte `locationName:"payload" type:"blob"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type UpdateJobExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -907,6 +1336,16 @@ type UpdateJobExecutionInput struct {
 	// Optional. A collection of name/value pairs that describe the status of the
 	// job execution. If not specified, the statusDetails are unchanged.
 	StatusDetails map[string]*string `locationName:"statusDetails" type:"map"`
+
+	// Specifies the amount of time this device has to finish execution of this
+	// job. If the job execution status is not set to a terminal state before this
+	// timer expires, or before the timer is reset (by again calling UpdateJobExecution,
+	// setting the status to IN_PROGRESS and specifying a new timeout value in this
+	// field) the job execution status will be automatically set to TIMED_OUT. Note
+	// that setting or resetting this timeout has no effect on that job execution
+	// timeout which may have been specified when the job was created (CreateJob
+	// using field timeoutConfig).
+	StepTimeoutInMinutes *int64 `locationName:"stepTimeoutInMinutes" type:"long"`
 
 	// The name of the thing associated with the device.
 	//
@@ -991,13 +1430,18 @@ func (s *UpdateJobExecutionInput) SetStatusDetails(v map[string]*string) *Update
 	return s
 }
 
+// SetStepTimeoutInMinutes sets the StepTimeoutInMinutes field's value.
+func (s *UpdateJobExecutionInput) SetStepTimeoutInMinutes(v int64) *UpdateJobExecutionInput {
+	s.StepTimeoutInMinutes = &v
+	return s
+}
+
 // SetThingName sets the ThingName field's value.
 func (s *UpdateJobExecutionInput) SetThingName(v string) *UpdateJobExecutionInput {
 	s.ThingName = &v
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/iot-jobs-data-2017-09-29/UpdateJobExecutionResponse
 type UpdateJobExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1042,6 +1486,9 @@ const (
 
 	// JobExecutionStatusFailed is a JobExecutionStatus enum value
 	JobExecutionStatusFailed = "FAILED"
+
+	// JobExecutionStatusTimedOut is a JobExecutionStatus enum value
+	JobExecutionStatusTimedOut = "TIMED_OUT"
 
 	// JobExecutionStatusRejected is a JobExecutionStatus enum value
 	JobExecutionStatusRejected = "REJECTED"

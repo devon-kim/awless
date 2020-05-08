@@ -65,6 +65,12 @@ const (
 	// The requested configuration is not valid.
 	ErrCodeInvalidConfigurationRequestException = "InvalidConfigurationRequest"
 
+	// ErrCodeInvalidLoadBalancerActionException for service response error code
+	// "InvalidLoadBalancerAction".
+	//
+	// The requested action is not valid.
+	ErrCodeInvalidLoadBalancerActionException = "InvalidLoadBalancerAction"
+
 	// ErrCodeInvalidSchemeException for service response error code
 	// "InvalidScheme".
 	//
@@ -150,6 +156,12 @@ const (
 	// The specified target group does not exist.
 	ErrCodeTargetGroupNotFoundException = "TargetGroupNotFound"
 
+	// ErrCodeTooManyActionsException for service response error code
+	// "TooManyActions".
+	//
+	// You've reached the limit on the number of actions per rule.
+	ErrCodeTooManyActionsException = "TooManyActions"
+
 	// ErrCodeTooManyCertificatesException for service response error code
 	// "TooManyCertificates".
 	//
@@ -198,6 +210,14 @@ const (
 	//
 	// You've reached the limit on the number of targets.
 	ErrCodeTooManyTargetsException = "TooManyTargets"
+
+	// ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException for service response error code
+	// "TooManyUniqueTargetGroupsPerLoadBalancer".
+	//
+	// You've reached the limit on the number of unique target groups per load balancer
+	// across all listeners. If a target group is used by multiple actions for a
+	// load balancer, it is counted as only one use.
+	ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException = "TooManyUniqueTargetGroupsPerLoadBalancer"
 
 	// ErrCodeUnsupportedProtocolException for service response error code
 	// "UnsupportedProtocol".

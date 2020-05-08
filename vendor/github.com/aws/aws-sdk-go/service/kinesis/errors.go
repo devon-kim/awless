@@ -2,6 +2,10 @@
 
 package kinesis
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeExpiredIteratorException for service response error code
@@ -9,6 +13,16 @@ const (
 	//
 	// The provided iterator exceeds the maximum age allowed.
 	ErrCodeExpiredIteratorException = "ExpiredIteratorException"
+
+	// ErrCodeExpiredNextTokenException for service response error code
+	// "ExpiredNextTokenException".
+	//
+	// The pagination token passed to the operation is expired.
+	ErrCodeExpiredNextTokenException = "ExpiredNextTokenException"
+
+	// ErrCodeInternalFailureException for service response error code
+	// "InternalFailureException".
+	ErrCodeInternalFailureException = "InternalFailureException"
 
 	// ErrCodeInvalidArgumentException for service response error code
 	// "InvalidArgumentException".
@@ -74,8 +88,8 @@ const (
 	// The request rate for the stream is too high, or the requested data is too
 	// large for the available throughput. Reduce the frequency or size of your
 	// requests. For more information, see Streams Limits (http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html)
-	// in the Amazon Kinesis Streams Developer Guide, and Error Retries and Exponential
-	// Backoff in AWS (http://docs.aws.amazon.com/general/latest/gr/api-retries.html)
+	// in the Amazon Kinesis Data Streams Developer Guide, and Error Retries and
+	// Exponential Backoff in AWS (http://docs.aws.amazon.com/general/latest/gr/api-retries.html)
 	// in the AWS General Reference.
 	ErrCodeProvisionedThroughputExceededException = "ProvisionedThroughputExceededException"
 
@@ -93,3 +107,20 @@ const (
 	// correctly.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ExpiredIteratorException":               newErrorExpiredIteratorException,
+	"ExpiredNextTokenException":              newErrorExpiredNextTokenException,
+	"InternalFailureException":               newErrorInternalFailureException,
+	"InvalidArgumentException":               newErrorInvalidArgumentException,
+	"KMSAccessDeniedException":               newErrorKMSAccessDeniedException,
+	"KMSDisabledException":                   newErrorKMSDisabledException,
+	"KMSInvalidStateException":               newErrorKMSInvalidStateException,
+	"KMSNotFoundException":                   newErrorKMSNotFoundException,
+	"KMSOptInRequired":                       newErrorKMSOptInRequired,
+	"KMSThrottlingException":                 newErrorKMSThrottlingException,
+	"LimitExceededException":                 newErrorLimitExceededException,
+	"ProvisionedThroughputExceededException": newErrorProvisionedThroughputExceededException,
+	"ResourceInUseException":                 newErrorResourceInUseException,
+	"ResourceNotFoundException":              newErrorResourceNotFoundException,
+}

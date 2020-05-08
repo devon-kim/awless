@@ -3,8 +3,8 @@
 package api
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 	"reflect"
 	"strings"
 
@@ -83,7 +83,7 @@ func (f paramFiller) paramsStructAny(value interface{}, shape *Shape) string {
 	case "jsonvalue":
 		v, err := json.Marshal(value)
 		if err != nil {
-			panic("failed to marshal JSONValue, "+err.Error())
+			panic("failed to marshal JSONValue, " + err.Error())
 		}
 		const tmpl = `func() aws.JSONValue {
 			var m aws.JSONValue
@@ -139,7 +139,7 @@ func (f paramFiller) paramsStructList(value []interface{}, shape *Shape) string 
 // findParamMember searches a map for a key ignoring case. Returns the map key if found.
 func findParamMember(value map[string]interface{}, key string) string {
 	for actualKey := range value {
-		if strings.ToLower(key) == strings.ToLower(actualKey) {
+		if strings.EqualFold(key, actualKey) {
 			return actualKey
 		}
 	}

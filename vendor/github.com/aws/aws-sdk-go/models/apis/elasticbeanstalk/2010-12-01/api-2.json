@@ -6,6 +6,7 @@
     "protocol":"query",
     "serviceAbbreviation":"Elastic Beanstalk",
     "serviceFullName":"AWS Elastic Beanstalk",
+    "serviceId":"Elastic Beanstalk",
     "signatureVersion":"v4",
     "uid":"elasticbeanstalk-2010-12-01",
     "xmlNamespace":"http://elasticbeanstalk.amazonaws.com/docs/2010-12-01/"
@@ -228,6 +229,20 @@
         {"shape":"PlatformVersionStillReferencedException"}
       ]
     },
+    "DescribeAccountAttributes":{
+      "name":"DescribeAccountAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "output":{
+        "shape":"DescribeAccountAttributesResult",
+        "resultWrapper":"DescribeAccountAttributesResult"
+      },
+      "errors":[
+        {"shape":"InsufficientPrivilegesException"}
+      ]
+    },
     "DescribeApplicationVersions":{
       "name":"DescribeApplicationVersions",
       "http":{
@@ -408,6 +423,18 @@
       "output":{
         "shape":"ListAvailableSolutionStacksResultMessage",
         "resultWrapper":"ListAvailableSolutionStacksResult"
+      }
+    },
+    "ListPlatformBranches":{
+      "name":"ListPlatformBranches",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPlatformBranchesRequest"},
+      "output":{
+        "shape":"ListPlatformBranchesResult",
+        "resultWrapper":"ListPlatformBranchesResult"
       }
     },
     "ListPlatformVersions":{
@@ -643,9 +670,11 @@
         "Unknown"
       ]
     },
+    "ApplicationArn":{"type":"string"},
     "ApplicationDescription":{
       "type":"structure",
       "members":{
+        "ApplicationArn":{"shape":"ApplicationArn"},
         "ApplicationName":{"shape":"ApplicationName"},
         "Description":{"shape":"Description"},
         "DateCreated":{"shape":"CreationDate"},
@@ -703,9 +732,11 @@
         "ResourceLifecycleConfig":{"shape":"ApplicationResourceLifecycleConfig"}
       }
     },
+    "ApplicationVersionArn":{"type":"string"},
     "ApplicationVersionDescription":{
       "type":"structure",
       "members":{
+        "ApplicationVersionArn":{"shape":"ApplicationVersionArn"},
         "ApplicationName":{"shape":"ApplicationName"},
         "Description":{"shape":"Description"},
         "VersionLabel":{"shape":"VersionLabel"},
@@ -791,6 +822,8 @@
     },
     "BoxedBoolean":{"type":"boolean"},
     "BoxedInt":{"type":"integer"},
+    "BranchName":{"type":"string"},
+    "BranchOrder":{"type":"integer"},
     "BuildConfiguration":{
       "type":"structure",
       "required":[
@@ -820,7 +853,8 @@
         "Idle":{"shape":"NullableDouble"},
         "IOWait":{"shape":"NullableDouble"},
         "IRQ":{"shape":"NullableDouble"},
-        "SoftIRQ":{"shape":"NullableDouble"}
+        "SoftIRQ":{"shape":"NullableDouble"},
+        "Privileged":{"shape":"NullableDouble"}
       }
     },
     "Cause":{
@@ -985,7 +1019,8 @@
       "members":{
         "ApplicationName":{"shape":"ApplicationName"},
         "Description":{"shape":"Description"},
-        "ResourceLifecycleConfig":{"shape":"ApplicationResourceLifecycleConfig"}
+        "ResourceLifecycleConfig":{"shape":"ApplicationResourceLifecycleConfig"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateApplicationVersionMessage":{
@@ -1002,7 +1037,8 @@
         "SourceBundle":{"shape":"S3Location"},
         "BuildConfiguration":{"shape":"BuildConfiguration"},
         "AutoCreateApplication":{"shape":"AutoCreateApplication"},
-        "Process":{"shape":"ApplicationVersionProccess"}
+        "Process":{"shape":"ApplicationVersionProccess"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateConfigurationTemplateMessage":{
@@ -1019,7 +1055,8 @@
         "SourceConfiguration":{"shape":"SourceConfiguration"},
         "EnvironmentId":{"shape":"EnvironmentId"},
         "Description":{"shape":"Description"},
-        "OptionSettings":{"shape":"ConfigurationOptionSettingsList"}
+        "OptionSettings":{"shape":"ConfigurationOptionSettingsList"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateEnvironmentMessage":{
@@ -1053,7 +1090,8 @@
         "PlatformVersion":{"shape":"PlatformVersion"},
         "PlatformDefinitionBundle":{"shape":"S3Location"},
         "EnvironmentName":{"shape":"EnvironmentName"},
-        "OptionSettings":{"shape":"ConfigurationOptionSettingsList"}
+        "OptionSettings":{"shape":"ConfigurationOptionSettingsList"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreatePlatformVersionResult":{
@@ -1156,6 +1194,12 @@
       }
     },
     "DeploymentTimestamp":{"type":"timestamp"},
+    "DescribeAccountAttributesResult":{
+      "type":"structure",
+      "members":{
+        "ResourceQuotas":{"shape":"ResourceQuotas"}
+      }
+    },
     "DescribeApplicationVersionsMessage":{
       "type":"structure",
       "members":{
@@ -1394,7 +1438,8 @@
         "Info",
         "Warning",
         "Degraded",
-        "Severe"
+        "Severe",
+        "Suspended"
       ]
     },
     "EnvironmentId":{"type":"string"},
@@ -1449,6 +1494,7 @@
         "AutoScalingGroups":{"shape":"AutoScalingGroupList"},
         "Instances":{"shape":"InstanceList"},
         "LaunchConfigurations":{"shape":"LaunchConfigurationList"},
+        "LaunchTemplates":{"shape":"LaunchTemplateList"},
         "LoadBalancers":{"shape":"LoadBalancerList"},
         "Triggers":{"shape":"TriggerList"},
         "Queues":{"shape":"QueueList"}
@@ -1647,12 +1693,37 @@
       "type":"list",
       "member":{"shape":"LaunchConfiguration"}
     },
+    "LaunchTemplate":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ResourceId"}
+      }
+    },
+    "LaunchTemplateList":{
+      "type":"list",
+      "member":{"shape":"LaunchTemplate"}
+    },
     "LaunchedAt":{"type":"timestamp"},
     "ListAvailableSolutionStacksResultMessage":{
       "type":"structure",
       "members":{
         "SolutionStacks":{"shape":"AvailableSolutionStackNamesList"},
         "SolutionStackDetails":{"shape":"AvailableSolutionStackDetailsList"}
+      }
+    },
+    "ListPlatformBranchesRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"SearchFilters"},
+        "MaxRecords":{"shape":"PlatformBranchMaxRecords"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListPlatformBranchesResult":{
+      "type":"structure",
+      "members":{
+        "PlatformBranchSummaryList":{"shape":"PlatformBranchSummaryList"},
+        "NextToken":{"shape":"Token"}
       }
     },
     "ListPlatformVersionsRequest":{
@@ -1831,6 +1902,25 @@
       "member":{"shape":"OptionSpecification"}
     },
     "PlatformArn":{"type":"string"},
+    "PlatformBranchLifecycleState":{"type":"string"},
+    "PlatformBranchMaxRecords":{
+      "type":"integer",
+      "min":1
+    },
+    "PlatformBranchSummary":{
+      "type":"structure",
+      "members":{
+        "PlatformName":{"shape":"PlatformName"},
+        "BranchName":{"shape":"BranchName"},
+        "LifecycleState":{"shape":"PlatformBranchLifecycleState"},
+        "BranchOrder":{"shape":"BranchOrder"},
+        "SupportedTierList":{"shape":"SupportedTierList"}
+      }
+    },
+    "PlatformBranchSummaryList":{
+      "type":"list",
+      "member":{"shape":"PlatformBranchSummary"}
+    },
     "PlatformCategory":{"type":"string"},
     "PlatformDescription":{
       "type":"structure",
@@ -1852,7 +1942,10 @@
         "Frameworks":{"shape":"PlatformFrameworks"},
         "CustomAmiList":{"shape":"CustomAmiList"},
         "SupportedTierList":{"shape":"SupportedTierList"},
-        "SupportedAddonList":{"shape":"SupportedAddonList"}
+        "SupportedAddonList":{"shape":"SupportedAddonList"},
+        "PlatformLifecycleState":{"shape":"PlatformLifecycleState"},
+        "PlatformBranchName":{"shape":"BranchName"},
+        "PlatformBranchLifecycleState":{"shape":"PlatformBranchLifecycleState"}
       }
     },
     "PlatformFilter":{
@@ -1885,6 +1978,7 @@
       "type":"list",
       "member":{"shape":"PlatformFramework"}
     },
+    "PlatformLifecycleState":{"type":"string"},
     "PlatformMaxRecords":{
       "type":"integer",
       "min":1
@@ -1922,7 +2016,11 @@
         "OperatingSystemName":{"shape":"OperatingSystemName"},
         "OperatingSystemVersion":{"shape":"OperatingSystemVersion"},
         "SupportedTierList":{"shape":"SupportedTierList"},
-        "SupportedAddonList":{"shape":"SupportedAddonList"}
+        "SupportedAddonList":{"shape":"SupportedAddonList"},
+        "PlatformLifecycleState":{"shape":"PlatformLifecycleState"},
+        "PlatformVersion":{"shape":"PlatformVersion"},
+        "PlatformBranchName":{"shape":"BranchName"},
+        "PlatformBranchLifecycleState":{"shape":"PlatformBranchLifecycleState"}
       }
     },
     "PlatformSummaryList":{
@@ -1990,6 +2088,22 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ResourceQuota":{
+      "type":"structure",
+      "members":{
+        "Maximum":{"shape":"BoxedInt"}
+      }
+    },
+    "ResourceQuotas":{
+      "type":"structure",
+      "members":{
+        "ApplicationQuota":{"shape":"ResourceQuota"},
+        "ApplicationVersionQuota":{"shape":"ResourceQuota"},
+        "EnvironmentQuota":{"shape":"ResourceQuota"},
+        "ConfigurationTemplateQuota":{"shape":"ResourceQuota"},
+        "CustomPlatformQuota":{"shape":"ResourceQuota"}
+      }
     },
     "ResourceTagsDescriptionMessage":{
       "type":"structure",
@@ -2069,6 +2183,25 @@
       "exception":true
     },
     "SampleTimestamp":{"type":"timestamp"},
+    "SearchFilter":{
+      "type":"structure",
+      "members":{
+        "Attribute":{"shape":"SearchFilterAttribute"},
+        "Operator":{"shape":"SearchFilterOperator"},
+        "Values":{"shape":"SearchFilterValues"}
+      }
+    },
+    "SearchFilterAttribute":{"type":"string"},
+    "SearchFilterOperator":{"type":"string"},
+    "SearchFilterValue":{"type":"string"},
+    "SearchFilterValues":{
+      "type":"list",
+      "member":{"shape":"SearchFilterValue"}
+    },
+    "SearchFilters":{
+      "type":"list",
+      "member":{"shape":"SearchFilter"}
+    },
     "SingleInstanceHealth":{
       "type":"structure",
       "members":{

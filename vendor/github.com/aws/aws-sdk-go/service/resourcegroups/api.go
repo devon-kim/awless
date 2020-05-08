@@ -3,17 +3,20 @@
 package resourcegroups
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opCreateGroup = "CreateGroup"
 
 // CreateGroupRequest generates a "aws/request.Request" representing the
 // client's request for the CreateGroup operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -61,21 +64,21 @@ func (c *ResourceGroups) CreateGroupRequest(input *CreateGroupInput) (req *reque
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation CreateGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroup
@@ -104,8 +107,8 @@ const opDeleteGroup = "DeleteGroup"
 
 // DeleteGroupRequest generates a "aws/request.Request" representing the
 // client's request for the DeleteGroup operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -154,24 +157,24 @@ func (c *ResourceGroups) DeleteGroupRequest(input *DeleteGroupInput) (req *reque
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation DeleteGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more resources specified in the request do not exist.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroup
@@ -200,8 +203,8 @@ const opGetGroup = "GetGroup"
 
 // GetGroupRequest generates a "aws/request.Request" representing the
 // client's request for the GetGroup operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -249,24 +252,24 @@ func (c *ResourceGroups) GetGroupRequest(input *GetGroupInput) (req *request.Req
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation GetGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more resources specified in the request do not exist.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroup
@@ -295,8 +298,8 @@ const opGetGroupQuery = "GetGroupQuery"
 
 // GetGroupQueryRequest generates a "aws/request.Request" representing the
 // client's request for the GetGroupQuery operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -344,24 +347,24 @@ func (c *ResourceGroups) GetGroupQueryRequest(input *GetGroupQueryInput) (req *r
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation GetGroupQuery for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more resources specified in the request do not exist.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQuery
@@ -390,8 +393,8 @@ const opGetTags = "GetTags"
 
 // GetTagsRequest generates a "aws/request.Request" representing the
 // client's request for the GetTags operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -430,8 +433,8 @@ func (c *ResourceGroups) GetTagsRequest(input *GetTagsInput) (req *request.Reque
 
 // GetTags API operation for AWS Resource Groups.
 //
-// Returns a list of tags that are associated with a resource, specified by
-// an ARN.
+// Returns a list of tags that are associated with a resource group, specified
+// by an ARN.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -440,24 +443,24 @@ func (c *ResourceGroups) GetTagsRequest(input *GetTagsInput) (req *request.Reque
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation GetTags for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more resources specified in the request do not exist.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTags
@@ -486,8 +489,8 @@ const opListGroupResources = "ListGroupResources"
 
 // ListGroupResourcesRequest generates a "aws/request.Request" representing the
 // client's request for the ListGroupResources operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -511,8 +514,8 @@ const opListGroupResources = "ListGroupResources"
 func (c *ResourceGroups) ListGroupResourcesRequest(input *ListGroupResourcesInput) (req *request.Request, output *ListGroupResourcesOutput) {
 	op := &request.Operation{
 		Name:       opListGroupResources,
-		HTTPMethod: "GET",
-		HTTPPath:   "/groups/{GroupName}/resource-identifiers",
+		HTTPMethod: "POST",
+		HTTPPath:   "/groups/{GroupName}/resource-identifiers-list",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -542,28 +545,28 @@ func (c *ResourceGroups) ListGroupResourcesRequest(input *ListGroupResourcesInpu
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation ListGroupResources for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+// Returned Error Types:
+//   * UnauthorizedException
 //   The request has not been applied because it lacks valid authentication credentials
 //   for the target resource.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more resources specified in the request do not exist.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResources
@@ -599,7 +602,7 @@ func (c *ResourceGroups) ListGroupResourcesWithContext(ctx aws.Context, input *L
 //    // Example iterating over at most 3 pages of a ListGroupResources operation.
 //    pageNum := 0
 //    err := client.ListGroupResourcesPages(params,
-//        func(page *ListGroupResourcesOutput, lastPage bool) bool {
+//        func(page *resourcegroups.ListGroupResourcesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -631,10 +634,12 @@ func (c *ResourceGroups) ListGroupResourcesPagesWithContext(ctx aws.Context, inp
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListGroupResourcesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListGroupResourcesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -642,8 +647,8 @@ const opListGroups = "ListGroups"
 
 // ListGroupsRequest generates a "aws/request.Request" representing the
 // client's request for the ListGroups operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -667,8 +672,8 @@ const opListGroups = "ListGroups"
 func (c *ResourceGroups) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, output *ListGroupsOutput) {
 	op := &request.Operation{
 		Name:       opListGroups,
-		HTTPMethod: "GET",
-		HTTPPath:   "/groups",
+		HTTPMethod: "POST",
+		HTTPPath:   "/groups-list",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -697,21 +702,21 @@ func (c *ResourceGroups) ListGroupsRequest(input *ListGroupsInput) (req *request
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation ListGroups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroups
@@ -747,7 +752,7 @@ func (c *ResourceGroups) ListGroupsWithContext(ctx aws.Context, input *ListGroup
 //    // Example iterating over at most 3 pages of a ListGroups operation.
 //    pageNum := 0
 //    err := client.ListGroupsPages(params,
-//        func(page *ListGroupsOutput, lastPage bool) bool {
+//        func(page *resourcegroups.ListGroupsOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -779,10 +784,12 @@ func (c *ResourceGroups) ListGroupsPagesWithContext(ctx aws.Context, input *List
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*ListGroupsOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*ListGroupsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -790,8 +797,8 @@ const opSearchResources = "SearchResources"
 
 // SearchResourcesRequest generates a "aws/request.Request" representing the
 // client's request for the SearchResources operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -847,25 +854,25 @@ func (c *ResourceGroups) SearchResourcesRequest(input *SearchResourcesInput) (re
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation SearchResources for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+// Returned Error Types:
+//   * UnauthorizedException
 //   The request has not been applied because it lacks valid authentication credentials
 //   for the target resource.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResources
@@ -901,7 +908,7 @@ func (c *ResourceGroups) SearchResourcesWithContext(ctx aws.Context, input *Sear
 //    // Example iterating over at most 3 pages of a SearchResources operation.
 //    pageNum := 0
 //    err := client.SearchResourcesPages(params,
-//        func(page *SearchResourcesOutput, lastPage bool) bool {
+//        func(page *resourcegroups.SearchResourcesOutput, lastPage bool) bool {
 //            pageNum++
 //            fmt.Println(page)
 //            return pageNum <= 3
@@ -933,10 +940,12 @@ func (c *ResourceGroups) SearchResourcesPagesWithContext(ctx aws.Context, input 
 		},
 	}
 
-	cont := true
-	for p.Next() && cont {
-		cont = fn(p.Page().(*SearchResourcesOutput), !p.HasNextPage())
+	for p.Next() {
+		if !fn(p.Page().(*SearchResourcesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
+
 	return p.Err()
 }
 
@@ -944,8 +953,8 @@ const opTag = "Tag"
 
 // TagRequest generates a "aws/request.Request" representing the
 // client's request for the Tag operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -984,8 +993,8 @@ func (c *ResourceGroups) TagRequest(input *TagInput) (req *request.Request, outp
 
 // Tag API operation for AWS Resource Groups.
 //
-// Adds specified tags to a resource with the specified ARN. Existing tags on
-// a resource are not changed if they are not specified in the request parameters.
+// Adds tags to a resource group with the specified ARN. Existing tags on a
+// resource group are not changed if they are not specified in the request parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -994,24 +1003,24 @@ func (c *ResourceGroups) TagRequest(input *TagInput) (req *request.Request, outp
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation Tag for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more resources specified in the request do not exist.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Tag
@@ -1040,8 +1049,8 @@ const opUntag = "Untag"
 
 // UntagRequest generates a "aws/request.Request" representing the
 // client's request for the Untag operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1089,24 +1098,24 @@ func (c *ResourceGroups) UntagRequest(input *UntagInput) (req *request.Request, 
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation Untag for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more resources specified in the request do not exist.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Untag
@@ -1135,8 +1144,8 @@ const opUpdateGroup = "UpdateGroup"
 
 // UpdateGroupRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateGroup operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1185,24 +1194,24 @@ func (c *ResourceGroups) UpdateGroupRequest(input *UpdateGroupInput) (req *reque
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation UpdateGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more resources specified in the request do not exist.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroup
@@ -1231,8 +1240,8 @@ const opUpdateGroupQuery = "UpdateGroupQuery"
 
 // UpdateGroupQueryRequest generates a "aws/request.Request" representing the
 // client's request for the UpdateGroupQuery operation. The "output" return
-// value will be populated with the request's response once the request complets
-// successfuly.
+// value will be populated with the request's response once the request completes
+// successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
 // the "output" return value is not valid until after Send returns without error.
@@ -1280,24 +1289,24 @@ func (c *ResourceGroups) UpdateGroupQueryRequest(input *UpdateGroupQueryInput) (
 // See the AWS API reference guide for AWS Resource Groups's
 // API operation UpdateGroupQuery for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The request does not comply with validation rules that are defined for the
 //   request parameters.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more resources specified in the request do not exist.
 //
-//   * ErrCodeMethodNotAllowedException "MethodNotAllowedException"
+//   * MethodNotAllowedException
 //   The request uses an HTTP method which is not allowed for the specified resource.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   The caller has exceeded throttling limits.
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //   An internal error occurred while processing the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQuery
@@ -1322,7 +1331,63 @@ func (c *ResourceGroups) UpdateGroupQueryWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroupInput
+// The request does not comply with validation rules that are defined for the
+// request parameters.
+type BadRequestException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s BadRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BadRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorBadRequestException(v protocol.ResponseMetadata) error {
+	return &BadRequestException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *BadRequestException) Code() string {
+	return "BadRequestException"
+}
+
+// Message returns the exception's message.
+func (s *BadRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *BadRequestException) OrigErr() error {
+	return nil
+}
+
+func (s *BadRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *BadRequestException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *BadRequestException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type CreateGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1333,7 +1398,7 @@ type CreateGroupInput struct {
 
 	// The name of the group, which is the identifier of the group in other operations.
 	// A resource group name cannot be updated after it is created. A resource group
-	// name can have a maximum of 127 characters, including letters, numbers, hyphens,
+	// name can have a maximum of 128 characters, including letters, numbers, hyphens,
 	// dots, and underscores. The name cannot start with AWS or aws; these are reserved.
 	// A resource group name must be unique within your account.
 	//
@@ -1347,8 +1412,8 @@ type CreateGroupInput struct {
 	ResourceQuery *ResourceQuery `type:"structure" required:"true"`
 
 	// The tags to add to the group. A tag is a string-to-string map of key-value
-	// pairs. Tag keys can have a maximum character length of 127 characters, and
-	// tag values can have a maximum length of 255 characters.
+	// pairs. Tag keys can have a maximum character length of 128 characters, and
+	// tag values can have a maximum length of 256 characters.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -1410,7 +1475,6 @@ func (s *CreateGroupInput) SetTags(v map[string]*string) *CreateGroupInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/CreateGroupOutput
 type CreateGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1452,7 +1516,6 @@ func (s *CreateGroupOutput) SetTags(v map[string]*string) *CreateGroupOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroupInput
 type DeleteGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1494,7 +1557,6 @@ func (s *DeleteGroupInput) SetGroupName(v string) *DeleteGroupInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/DeleteGroupOutput
 type DeleteGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1518,7 +1580,62 @@ func (s *DeleteGroupOutput) SetGroup(v *Group) *DeleteGroupOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupInput
+// The caller is not authorized to make the request.
+type ForbiddenException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ForbiddenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ForbiddenException) GoString() string {
+	return s.String()
+}
+
+func newErrorForbiddenException(v protocol.ResponseMetadata) error {
+	return &ForbiddenException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ForbiddenException) Code() string {
+	return "ForbiddenException"
+}
+
+// Message returns the exception's message.
+func (s *ForbiddenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ForbiddenException) OrigErr() error {
+	return nil
+}
+
+func (s *ForbiddenException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ForbiddenException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ForbiddenException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type GetGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1560,7 +1677,6 @@ func (s *GetGroupInput) SetGroupName(v string) *GetGroupInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupOutput
 type GetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1584,7 +1700,6 @@ func (s *GetGroupOutput) SetGroup(v *Group) *GetGroupOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQueryInput
 type GetGroupQueryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1626,7 +1741,6 @@ func (s *GetGroupQueryInput) SetGroupName(v string) *GetGroupQueryInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetGroupQueryOutput
 type GetGroupQueryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1650,15 +1764,14 @@ func (s *GetGroupQueryOutput) SetGroupQuery(v *GroupQuery) *GetGroupQueryOutput 
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTagsInput
 type GetTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource for which you want a list of tags. The resource must
-	// exist within the account you are using.
+	// The ARN of the resource group for which you want a list of tags. The resource
+	// must exist within the account you are using.
 	//
 	// Arn is a required field
-	Arn *string `location:"uri" locationName:"Arn" type:"string" required:"true"`
+	Arn *string `location:"uri" locationName:"Arn" min:"12" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -1677,6 +1790,9 @@ func (s *GetTagsInput) Validate() error {
 	if s.Arn == nil {
 		invalidParams.Add(request.NewErrParamRequired("Arn"))
 	}
+	if s.Arn != nil && len(*s.Arn) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 12))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1690,14 +1806,13 @@ func (s *GetTagsInput) SetArn(v string) *GetTagsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GetTagsOutput
 type GetTagsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the tagged resource.
-	Arn *string `type:"string"`
+	// The ARN of the tagged resource group.
+	Arn *string `min:"12" type:"string"`
 
-	// The tags associated with the specified resource.
+	// The tags associated with the specified resource group.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -1724,7 +1839,6 @@ func (s *GetTagsOutput) SetTags(v map[string]*string) *GetTagsOutput {
 }
 
 // A resource group.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/Group
 type Group struct {
 	_ struct{} `type:"structure"`
 
@@ -1734,7 +1848,7 @@ type Group struct {
 	// The ARN of a resource group.
 	//
 	// GroupArn is a required field
-	GroupArn *string `type:"string" required:"true"`
+	GroupArn *string `min:"12" type:"string" required:"true"`
 
 	// The name of a resource group.
 	//
@@ -1770,9 +1884,99 @@ func (s *Group) SetName(v string) *Group {
 	return s
 }
 
+// A filter name and value pair that is used to obtain more specific results
+// from a list of groups.
+type GroupFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter. Filter names are case-sensitive.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" enum:"GroupFilterName"`
+
+	// One or more filter values. Allowed filter values vary by group filter name,
+	// and are case-sensitive.
+	//
+	// Values is a required field
+	Values []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s GroupFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GroupFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GroupFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GroupFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GroupFilter) SetName(v string) *GroupFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *GroupFilter) SetValues(v []*string) *GroupFilter {
+	s.Values = v
+	return s
+}
+
+// The ARN and group name of a group.
+type GroupIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of a resource group.
+	GroupArn *string `min:"12" type:"string"`
+
+	// The name of a resource group.
+	GroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GroupIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GroupIdentifier) GoString() string {
+	return s.String()
+}
+
+// SetGroupArn sets the GroupArn field's value.
+func (s *GroupIdentifier) SetGroupArn(v string) *GroupIdentifier {
+	s.GroupArn = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *GroupIdentifier) SetGroupName(v string) *GroupIdentifier {
+	s.GroupName = &v
+	return s
+}
+
 // The underlying resource query of a resource group. Resources that match query
 // results are part of the group.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/GroupQuery
 type GroupQuery struct {
 	_ struct{} `type:"structure"`
 
@@ -1811,9 +2015,72 @@ func (s *GroupQuery) SetResourceQuery(v *ResourceQuery) *GroupQuery {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResourcesInput
+// An internal error occurred while processing the request.
+type InternalServerErrorException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerErrorException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerErrorException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerErrorException(v protocol.ResponseMetadata) error {
+	return &InternalServerErrorException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InternalServerErrorException) Code() string {
+	return "InternalServerErrorException"
+}
+
+// Message returns the exception's message.
+func (s *InternalServerErrorException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InternalServerErrorException) OrigErr() error {
+	return nil
+}
+
+func (s *InternalServerErrorException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InternalServerErrorException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InternalServerErrorException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type ListGroupResourcesInput struct {
 	_ struct{} `type:"structure"`
+
+	// Filters, formatted as ResourceFilter objects, that you want to apply to a
+	// ListGroupResources operation.
+	//
+	//    * resource-type - Filter resources by their type. Specify up to five resource
+	//    types in the format AWS::ServiceCode::ResourceType. For example, AWS::EC2::Instance,
+	//    or AWS::S3::Bucket.
+	Filters []*ResourceFilter `type:"list"`
 
 	// The name of the resource group.
 	//
@@ -1852,11 +2119,27 @@ func (s *ListGroupResourcesInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListGroupResourcesInput) SetFilters(v []*ResourceFilter) *ListGroupResourcesInput {
+	s.Filters = v
+	return s
 }
 
 // SetGroupName sets the GroupName field's value.
@@ -1877,13 +2160,17 @@ func (s *ListGroupResourcesInput) SetNextToken(v string) *ListGroupResourcesInpu
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupResourcesOutput
 type ListGroupResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The NextToken value to include in a subsequent ListGroupResources request,
 	// to get more results.
 	NextToken *string `type:"string"`
+
+	// A list of QueryError objects. Each error is an object that contains ErrorCode
+	// and Message structures. Possible values for ErrorCode are CLOUDFORMATION_STACK_INACTIVE
+	// and CLOUDFORMATION_STACK_NOT_EXISTING.
+	QueryErrors []*QueryError `type:"list"`
 
 	// The ARNs and resource types of resources that are members of the group that
 	// you specified.
@@ -1906,15 +2193,28 @@ func (s *ListGroupResourcesOutput) SetNextToken(v string) *ListGroupResourcesOut
 	return s
 }
 
+// SetQueryErrors sets the QueryErrors field's value.
+func (s *ListGroupResourcesOutput) SetQueryErrors(v []*QueryError) *ListGroupResourcesOutput {
+	s.QueryErrors = v
+	return s
+}
+
 // SetResourceIdentifiers sets the ResourceIdentifiers field's value.
 func (s *ListGroupResourcesOutput) SetResourceIdentifiers(v []*ResourceIdentifier) *ListGroupResourcesOutput {
 	s.ResourceIdentifiers = v
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupsInput
 type ListGroupsInput struct {
 	_ struct{} `type:"structure"`
+
+	// Filters, formatted as GroupFilter objects, that you want to apply to a ListGroups
+	// operation.
+	//
+	//    * resource-type - Filter groups by resource type. Specify up to five resource
+	//    types in the format AWS::ServiceCode::ResourceType. For example, AWS::EC2::Instance,
+	//    or AWS::S3::Bucket.
+	Filters []*GroupFilter `type:"list"`
 
 	// The maximum number of resource group results that are returned by ListGroups
 	// in paginated output. By default, this number is 50.
@@ -1942,11 +2242,27 @@ func (s *ListGroupsInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListGroupsInput) SetFilters(v []*GroupFilter) *ListGroupsInput {
+	s.Filters = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -1961,12 +2277,17 @@ func (s *ListGroupsInput) SetNextToken(v string) *ListGroupsInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ListGroupsOutput
 type ListGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of GroupIdentifier objects. Each identifier is an object that contains
+	// both the GroupName and the GroupArn.
+	GroupIdentifiers []*GroupIdentifier `type:"list"`
+
 	// A list of resource groups.
-	Groups []*Group `type:"list"`
+	//
+	// Deprecated: This field is deprecated, use GroupIdentifiers instead.
+	Groups []*Group `deprecated:"true" type:"list"`
 
 	// The NextToken value to include in a subsequent ListGroups request, to get
 	// more results.
@@ -1983,6 +2304,12 @@ func (s ListGroupsOutput) GoString() string {
 	return s.String()
 }
 
+// SetGroupIdentifiers sets the GroupIdentifiers field's value.
+func (s *ListGroupsOutput) SetGroupIdentifiers(v []*GroupIdentifier) *ListGroupsOutput {
+	s.GroupIdentifiers = v
+	return s
+}
+
 // SetGroups sets the Groups field's value.
 func (s *ListGroupsOutput) SetGroups(v []*Group) *ListGroupsOutput {
 	s.Groups = v
@@ -1995,8 +2322,218 @@ func (s *ListGroupsOutput) SetNextToken(v string) *ListGroupsOutput {
 	return s
 }
 
+// The request uses an HTTP method which is not allowed for the specified resource.
+type MethodNotAllowedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s MethodNotAllowedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MethodNotAllowedException) GoString() string {
+	return s.String()
+}
+
+func newErrorMethodNotAllowedException(v protocol.ResponseMetadata) error {
+	return &MethodNotAllowedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *MethodNotAllowedException) Code() string {
+	return "MethodNotAllowedException"
+}
+
+// Message returns the exception's message.
+func (s *MethodNotAllowedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *MethodNotAllowedException) OrigErr() error {
+	return nil
+}
+
+func (s *MethodNotAllowedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *MethodNotAllowedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *MethodNotAllowedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// One or more resources specified in the request do not exist.
+type NotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s NotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotFoundException(v protocol.ResponseMetadata) error {
+	return &NotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *NotFoundException) Code() string {
+	return "NotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *NotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *NotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *NotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *NotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *NotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A two-part error structure that can occur in ListGroupResources or SearchResources
+// operations on CloudFormation stack-based queries. The error occurs if the
+// CloudFormation stack on which the query is based either does not exist, or
+// has a status that renders the stack inactive. A QueryError occurrence does
+// not necessarily mean that AWS Resource Groups could not complete the operation,
+// but the resulting group might have no member resources.
+type QueryError struct {
+	_ struct{} `type:"structure"`
+
+	// Possible values are CLOUDFORMATION_STACK_INACTIVE and CLOUDFORMATION_STACK_NOT_EXISTING.
+	ErrorCode *string `type:"string" enum:"QueryErrorCode"`
+
+	// A message that explains the ErrorCode value. Messages might state that the
+	// specified CloudFormation stack does not exist (or no longer exists). For
+	// CLOUDFORMATION_STACK_INACTIVE, the message typically states that the CloudFormation
+	// stack has a status that is not (or no longer) active, such as CREATE_FAILED.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation
+func (s QueryError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s QueryError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *QueryError) SetErrorCode(v string) *QueryError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *QueryError) SetMessage(v string) *QueryError {
+	s.Message = &v
+	return s
+}
+
+// A filter name and value pair that is used to obtain more specific results
+// from a list of resources.
+type ResourceFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter. Filter names are case-sensitive.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" enum:"ResourceFilterName"`
+
+	// One or more filter values. Allowed filter values vary by resource filter
+	// name, and are case-sensitive.
+	//
+	// Values is a required field
+	Values []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ResourceFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ResourceFilter) SetName(v string) *ResourceFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *ResourceFilter) SetValues(v []*string) *ResourceFilter {
+	s.Values = v
+	return s
+}
+
 // The ARN of a resource, and its resource type.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ResourceIdentifier
 type ResourceIdentifier struct {
 	_ struct{} `type:"structure"`
 
@@ -2030,7 +2567,6 @@ func (s *ResourceIdentifier) SetResourceType(v string) *ResourceIdentifier {
 }
 
 // The query that is used to define a resource group or a search for resources.
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/ResourceQuery
 type ResourceQuery struct {
 	_ struct{} `type:"structure"`
 
@@ -2039,17 +2575,43 @@ type ResourceQuery struct {
 	// Query is a required field
 	Query *string `type:"string" required:"true"`
 
-	// The type of the query. The valid value in this release is TAG_FILTERS_1_0.
+	// The type of the query. The valid values in this release are TAG_FILTERS_1_0
+	// and CLOUDFORMATION_STACK_1_0.
 	//
-	// TAG_FILTERS_1_0: A JSON syntax that lets you specify a collection of simple
-	// tag filters for resource types and tags, as supported by the AWS Tagging
-	// API GetResources operation. When more than one element is present, only resources
-	// that match all filters are part of the result. If a filter specifies more
-	// than one value for a key, a resource matches the filter if its tag value
-	// matches any of the specified values.
+	//  TAG_FILTERS_1_0: A JSON syntax that lets you specify a collection of simple
+	//  tag filters for resource types and tags, as supported by the AWS Tagging
+	//  API GetResources (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html)
+	//  operation. If you specify more than one tag key, only resources that match
+	//  all tag keys, and at least one value of each specified tag key, are returned
+	//  in your query. If you specify more than one value for a tag key, a resource
+	//  matches the filter if it has a tag key value that matches any of the specified
+	//  values.
+	//
+	// For example, consider the following sample query for resources that have
+	// two tags, Stage and Version, with two values each. ([{"Key":"Stage","Values":["Test","Deploy"]},{"Key":"Version","Values":["1","2"]}])
+	// The results of this query might include the following.
+	//
+	//    * An EC2 instance that has the following two tags: {"Key":"Stage","Value":"Deploy"},
+	//    and {"Key":"Version","Value":"2"}
+	//
+	//    * An S3 bucket that has the following two tags: {"Key":"Stage","Value":"Test"},
+	//    and {"Key":"Version","Value":"1"}
+	//
+	// The query would not return the following results, however. The following
+	// EC2 instance does not have all tag keys specified in the filter, so it is
+	// rejected. The RDS database has all of the tag keys, but no values that match
+	// at least one of the specified tag key values in the filter.
+	//
+	//    * An EC2 instance that has only the following tag: {"Key":"Stage","Value":"Deploy"}.
+	//
+	//    * An RDS database that has the following two tags: {"Key":"Stage","Value":"Archived"},
+	//    and {"Key":"Version","Value":"4"}
+	//
+	//  CLOUDFORMATION_STACK_1_0: A JSON syntax that lets you specify a CloudFormation
+	//  stack ARN.
 	//
 	// Type is a required field
-	Type *string `type:"string" required:"true" enum:"QueryType"`
+	Type *string `min:"1" type:"string" required:"true" enum:"QueryType"`
 }
 
 // String returns the string representation
@@ -2071,6 +2633,9 @@ func (s *ResourceQuery) Validate() error {
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
+	if s.Type != nil && len(*s.Type) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Type", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2090,7 +2655,6 @@ func (s *ResourceQuery) SetType(v string) *ResourceQuery {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResourcesInput
 type SearchResourcesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2159,13 +2723,17 @@ func (s *SearchResourcesInput) SetResourceQuery(v *ResourceQuery) *SearchResourc
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/SearchResourcesOutput
 type SearchResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The NextToken value to include in a subsequent SearchResources request, to
 	// get more results.
 	NextToken *string `type:"string"`
+
+	// A list of QueryError objects. Each error is an object that contains ErrorCode
+	// and Message structures. Possible values for ErrorCode are CLOUDFORMATION_STACK_INACTIVE
+	// and CLOUDFORMATION_STACK_NOT_EXISTING.
+	QueryErrors []*QueryError `type:"list"`
 
 	// The ARNs and resource types of resources that are members of the group that
 	// you specified.
@@ -2188,24 +2756,29 @@ func (s *SearchResourcesOutput) SetNextToken(v string) *SearchResourcesOutput {
 	return s
 }
 
+// SetQueryErrors sets the QueryErrors field's value.
+func (s *SearchResourcesOutput) SetQueryErrors(v []*QueryError) *SearchResourcesOutput {
+	s.QueryErrors = v
+	return s
+}
+
 // SetResourceIdentifiers sets the ResourceIdentifiers field's value.
 func (s *SearchResourcesOutput) SetResourceIdentifiers(v []*ResourceIdentifier) *SearchResourcesOutput {
 	s.ResourceIdentifiers = v
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/TagInput
 type TagInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the resource to which to add tags.
 	//
 	// Arn is a required field
-	Arn *string `location:"uri" locationName:"Arn" type:"string" required:"true"`
+	Arn *string `location:"uri" locationName:"Arn" min:"12" type:"string" required:"true"`
 
 	// The tags to add to the specified resource. A tag is a string-to-string map
-	// of key-value pairs. Tag keys can have a maximum character length of 127 characters,
-	// and tag values can have a maximum length of 255 characters.
+	// of key-value pairs. Tag keys can have a maximum character length of 128 characters,
+	// and tag values can have a maximum length of 256 characters.
 	//
 	// Tags is a required field
 	Tags map[string]*string `type:"map" required:"true"`
@@ -2226,6 +2799,9 @@ func (s *TagInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "TagInput"}
 	if s.Arn == nil {
 		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 12))
 	}
 	if s.Tags == nil {
 		invalidParams.Add(request.NewErrParamRequired("Tags"))
@@ -2249,12 +2825,11 @@ func (s *TagInput) SetTags(v map[string]*string) *TagInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/TagOutput
 type TagOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the tagged resource.
-	Arn *string `type:"string"`
+	Arn *string `min:"12" type:"string"`
 
 	// The tags that have been added to the specified resource.
 	Tags map[string]*string `type:"map"`
@@ -2282,14 +2857,126 @@ func (s *TagOutput) SetTags(v map[string]*string) *TagOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UntagInput
+// The caller has exceeded throttling limits.
+type TooManyRequestsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s TooManyRequestsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TooManyRequestsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
+	return &TooManyRequestsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyRequestsException) Code() string {
+	return "TooManyRequestsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyRequestsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyRequestsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyRequestsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyRequestsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyRequestsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The request has not been applied because it lacks valid authentication credentials
+// for the target resource.
+type UnauthorizedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UnauthorizedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnauthorizedException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnauthorizedException(v protocol.ResponseMetadata) error {
+	return &UnauthorizedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnauthorizedException) Code() string {
+	return "UnauthorizedException"
+}
+
+// Message returns the exception's message.
+func (s *UnauthorizedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnauthorizedException) OrigErr() error {
+	return nil
+}
+
+func (s *UnauthorizedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnauthorizedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnauthorizedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type UntagInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the resource from which to remove tags.
 	//
 	// Arn is a required field
-	Arn *string `location:"uri" locationName:"Arn" type:"string" required:"true"`
+	Arn *string `location:"uri" locationName:"Arn" min:"12" type:"string" required:"true"`
 
 	// The keys of the tags to be removed.
 	//
@@ -2313,6 +3000,9 @@ func (s *UntagInput) Validate() error {
 	if s.Arn == nil {
 		invalidParams.Add(request.NewErrParamRequired("Arn"))
 	}
+	if s.Arn != nil && len(*s.Arn) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 12))
+	}
 	if s.Keys == nil {
 		invalidParams.Add(request.NewErrParamRequired("Keys"))
 	}
@@ -2335,12 +3025,11 @@ func (s *UntagInput) SetKeys(v []*string) *UntagInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UntagOutput
 type UntagOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the resource from which tags have been removed.
-	Arn *string `type:"string"`
+	Arn *string `min:"12" type:"string"`
 
 	// The keys of tags that have been removed.
 	Keys []*string `type:"list"`
@@ -2368,7 +3057,6 @@ func (s *UntagOutput) SetKeys(v []*string) *UntagOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupInput
 type UpdateGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2421,7 +3109,6 @@ func (s *UpdateGroupInput) SetGroupName(v string) *UpdateGroupInput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupOutput
 type UpdateGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2445,7 +3132,6 @@ func (s *UpdateGroupOutput) SetGroup(v *Group) *UpdateGroupOutput {
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQueryInput
 type UpdateGroupQueryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2507,7 +3193,6 @@ func (s *UpdateGroupQueryInput) SetResourceQuery(v *ResourceQuery) *UpdateGroupQ
 	return s
 }
 
-// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/UpdateGroupQueryOutput
 type UpdateGroupQueryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2532,6 +3217,27 @@ func (s *UpdateGroupQueryOutput) SetGroupQuery(v *GroupQuery) *UpdateGroupQueryO
 }
 
 const (
+	// GroupFilterNameResourceType is a GroupFilterName enum value
+	GroupFilterNameResourceType = "resource-type"
+)
+
+const (
+	// QueryErrorCodeCloudformationStackInactive is a QueryErrorCode enum value
+	QueryErrorCodeCloudformationStackInactive = "CLOUDFORMATION_STACK_INACTIVE"
+
+	// QueryErrorCodeCloudformationStackNotExisting is a QueryErrorCode enum value
+	QueryErrorCodeCloudformationStackNotExisting = "CLOUDFORMATION_STACK_NOT_EXISTING"
+)
+
+const (
 	// QueryTypeTagFilters10 is a QueryType enum value
 	QueryTypeTagFilters10 = "TAG_FILTERS_1_0"
+
+	// QueryTypeCloudformationStack10 is a QueryType enum value
+	QueryTypeCloudformationStack10 = "CLOUDFORMATION_STACK_1_0"
+)
+
+const (
+	// ResourceFilterNameResourceType is a ResourceFilterName enum value
+	ResourceFilterNameResourceType = "resource-type"
 )
